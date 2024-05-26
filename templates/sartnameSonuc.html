@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- Sonclar kismi-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="savika-sonuc-container">
+        <h1 class="sonuc_">Şartname Seçimleri</h1>
+        <div class="savika-sonuc" id="result">
+          <table
+            class="table table-hover table-secondary table-striped res-table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Soru</th>
+                <th scope="col">Cevap</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in range(8) %}
+              <tr>
+                <th scope="row">{{item+1}}</th>
+                {% if results|length < 1 %}
+                <td>Seçim Yapılmadı!</td>
+                {% else %}
+                <td>{{results[item]}}</td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="savika-sonuc-container">
+        <h1 class="sonuc_">Sayısal Sonuçlar</h1>
+        <div class="savika-sonuc" id="result">
+          <table
+            class="table table-hover table-secondary table-striped res-table"
+          >
+            <thead>
+              <tr>
+                <th scope="col">İndex</th>
+                <th scope="col">Giriş Değerleri</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in range(16) %}
+              <tr>
+                <th scope="row">{{item+1}}</th>
+                {% if res|length < 1 %}
+                <td>Seçim Yapılmadı!</td>
+                {% else %}
+                <td>{{res[item]}}</td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

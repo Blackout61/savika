@@ -1,0 +1,180 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container" id="sartname_">
+  <div class="row">
+    <h1 class="header-sart">ŞARTNAME</h1>
+    <div id="sartname" class="ortala">
+      <form class="multi-step-form" method="POST" data-multi-step>
+        <div class="sartname">
+          <div class="card1 cardForm" data-step>
+            <div class="form-group">
+              <h2>İnsansız kara aracının maliyeti ne kadar olsun?</h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/1.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }} {{ form.radio_btn(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+            </div>
+          </div>
+          <div class="card2 cardForm" data-step>
+            <div class="form-group">
+              <h2>
+                İnsansız kara aracının boyutsal sınıflandırması hangi aralıkta
+                bulunsun?
+              </h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/4.jpeg')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_2(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card3 cardForm" data-step>
+            <div class="form-group">
+              <h2>
+                İnsansız kara aracının özerklik durumu hangi seviyede olsun?
+              </h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/2.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_3(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card4 cardForm" data-step>
+            <div class="form-group">
+              <h2>İnsansız kara aracının kapsama alanı ne kadar olsun?</h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/3.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_4(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card5 cardForm" data-step>
+            <div class="form-group">
+              <h2>İnsansız kara aracının hangi görevde kullanılsın?</h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/5.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_5(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card6 cardForm" data-step>
+            <div class="form-group">
+              <h2>İnsansız kara aracında kullanılacak motor tipi ne olsun?</h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/6.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_6(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card7 cardForm" data-step>
+            <div class="form-group">
+              <h2>
+                İnsansız kara aracının kullanılacağı arazi tipi hangisidir?
+              </h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/7.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_7(class_="")}}
+              </div>
+              <button name="button" data-next class="btn btn-success">
+                İlerle
+              </button>
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+          <div class="card8 cardForm" data-step>
+            <div class="form-group">
+              <h2>İnsansız kara aracının manevra kabiliyeti nasıl olsun?</h2>
+              <img
+                class="sartname-img"
+                src="{{url_for('static', filename='imgs/8.png')}}"
+                class="img-fluid rounded-top"
+                alt="No IMG"
+              />
+
+              <div class="radio-area">
+                {{ form.hidden_tag() }}{{ form.radio_btn_8(class_="")}}
+              </div>
+
+              {{ form.submit(class_="btn btn-success px-5 py-2") }}
+
+              <button name="button" data-previous class="btn btn-warning">
+                Geri
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

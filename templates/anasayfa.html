@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+  <div class="ana-content">
+    <div class="ana-header">
+      <img
+        class="logo-flag-2"
+        src="{{url_for('static', filename='imgs/gazi2.png')}}"
+        class="img-fluid rounded-top"
+        alt="No logo"
+      />
+      <div class="gazi-header">
+        <h1>GAZİ ÜNİVERSİTESİ</h1>
+        <h1>FEN BİLİMLERİ ENSTİTÜSÜ</h1>
+        <h1>ENDÜSTRİYEL TASARIM MÜHENDİSLİĞİ</h1>
+        <h1>DOKTORA TEZİ</h1>
+      </div>
+    </div>
+    <h1 class="ana-title">
+      SAVUNMA SİSTEMLERİNE YÖNELİK YAPAY ZEKA TEKNİKLERİNE DAYALI İNOVATİF BİR
+      TASARIM İŞLEM MODELİ GELİŞTİRİLMESİ
+    </h1>
+    <a href="{{url_for('sartname')}}" class="btn btn-success baslat">Başlat</a>
+  </div>
+</div>
+
+{% endblock %}

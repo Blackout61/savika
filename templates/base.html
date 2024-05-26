@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='styles/style.css')}}"
+    />
+    <script
+      src="https://kit.fontawesome.com/28f6175930.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <nav
+        class="navbar navbar-expand-lg bg-body-tertiary"
+        data-bs-theme="dark"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand me-5" href="#">
+            <img
+              class="logo-main"
+              src="{{url_for('static', filename='imgs/logo_last.png')}}"
+              class="img-fluid rounded-top"
+              alt="No IMG"
+            />
+            SAVİKA
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+              <li class="nav-item">
+                <a id="link1" class="nav-link" href="{{url_for('index')}}"
+                  >Ana Sayfa</a
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Fonksiyon Yapıları
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">Tüm Fonksiyon Yapısı</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Alt Fonksiyon Yapısı</a>
+                  </li>
+
+                  <div class="dropend">
+                    <li class="sub-menu">
+                      <a
+                        href="#"
+                        class="dropdown-item dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        data-toggle="dropdown"
+                        >Düzenle</a
+                      >
+                      <ul class="dropdown-menu savika-menu">
+                        <li>
+                          <a href="" class="dropdown-item"
+                            >Tüm Fonksiyon Yapısı Yükle</a
+                          >
+                        </li>
+                        <li>
+                          <a href="" class="dropdown-item"
+                            >Alt Fonksiyon Yapısı Yükle</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a id="link2" class="nav-link" href="{{url_for('sartname')}}"
+                  >Şartname</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a id="link2" class="nav-link" href="{{url_for('veriTabani')}}"
+                  >Veri Tabanı</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a id="link2" class="nav-link" href="">Yapay Zekâ</a>
+              </li>
+
+              <li class="nav-item">
+                <a id="link2" class="nav-link" href="">Tasarım</a>
+              </li>
+
+              <li class="nav-item">
+                <a id="link4" class="nav-link" href="">Yardım</a>
+              </li>
+              <li class="nav-item">
+                <a id="link3" class="nav-link" href="">Hakkımızda</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ms-auto icons">
+                <img
+                  class="logo-flag"
+                  src="{{url_for('static', filename='imgs/tr_logo.png')}}"
+                  class="img-fluid rounded-top"
+                  alt="No IMG"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-state"></div>
+        </div>
+        <span class="progress-label"></span>
+      </div>
+
+      <!-- Sayfa İçeriği -->
+      {% block content %} {% endblock %}
+    </main>
+
+    <footer class="text-center text-white" style="background-color: #ccc">
+      <!-- Grid container -->
+      <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="light"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+
+          <!-- Twitter -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-twitter"></i
+          ></a>
+
+          <!-- Google -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-google"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-instagram"></i
+          ></a>
+
+          <!-- Linkedin -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <!-- Github -->
+          <a
+            class="btn btn-link btn-floating btn-lg text-dark m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center text-dark p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)"
+      >
+        © 2023 Copyright:
+        <a class="text-dark" href="https://github.com/blackout61/"
+          >Cüneyd Demir</a
+        >
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <script
+      type="module"
+      src="{{url_for('static',filename='styles/script.js')}}"
+    ></script>
+  </body>
+</html>
