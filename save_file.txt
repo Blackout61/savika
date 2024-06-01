@@ -1,8 +1,8 @@
-100000$ + 
+30000$-100000$ 
 Uzunluk: 6+ m | Genişlik: 2+ m | Yükseklik: 2+ m | Dik Engel Aşma: 1.5+ m | Hendek Aşma: 1.5+ m | Eğim: 40-60% | Ağırlık: 15000+ kg 
-3. Seviye 
-x km² 
-Saldırı ve Geri Emniyet 
-400+ hp + 75+ kw Hibrit 
-Engebeli-Yumuşak Zemin 
-Dar Dönüş Yarıçapı
+2. Seviye 
+x<5 km² 
+Keşif, Gözetleme ve İstihbarat 
+300+ kw - Elektrikli 
+Düz-Yumuşak Zemin 
+Orta Dönüş Yarıçapı

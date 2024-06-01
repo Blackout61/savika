@@ -4,6 +4,7 @@ from savika.myForms import *
 from savika.savikaResults import savika_results, model_giris_degerleri, model_sonuc
 import pandas as pd
 import time
+from savika.recursive_form import MyRecursive1, MyRecursive2
 
 app = Flask(__name__)
 
@@ -85,6 +86,8 @@ def veriTabani():
 @app.route("/modelSonuc")
 def modelSonuc():
 
+    time.sleep(6)
+
     secimler = session['model_sonuc']
     savika = session['results']
     results_ = savika_results(savika)
@@ -93,6 +96,26 @@ def modelSonuc():
     res = model_sonuc(secimler)
 
     del results_[0]
+    del results_[5]
+
+    param = [
+        "Sınıf",
+        "Özerk Yapı",
+        "Kontrol Sistemi",
+        "Faydalı Yük",
+        "Motor",
+        "Yönlendirme Sistemi",
+        "Süspansiyon Sistemi",
+        "Gövde Malzemesi",
+        "Enerji Sistemi",
+        "Güç Aktarma Sistemi",
+        "Fren Sistemi",
+        "Isı Yönetim Sistemi",
+        "Elektrik Sistemi",
+        "Elektronik Üniteler",
+        "İntikal Konfigürasyonu",
+        "Şasi"
+    ]
 
     results_.insert(14, res)
     results_.insert(15, f"{res} Şasi")
@@ -100,12 +123,17 @@ def modelSonuc():
     path2d = f"/imgs/2D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.JPG"
     path3d = f"/imgs/3D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.glb"
 
+    return render_template(
+        "modelSonuc.html",
+        res=res,
+        results_=results_,
+        img_3=path3d,
+        img_2=path2d,
+        param=param,
+    )
+
     # session.clear()
-
-    time.sleep(7)
-
-    return render_template("modelSonuc.html", res=res, results_=results_, img_3=path3d, img_2=path2d)
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5151)
+    app.run(debug=True, port=6161)

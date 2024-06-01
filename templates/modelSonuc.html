@@ -1,6 +1,17 @@
 {% extends "base.html" %} {% block content %}
 <div class="container">
   <div class="row">
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-striped bg-success"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style=""
+        id="progress-bar"
+      ></div>
+    </div>
     <h1 class="text-center my-3">SAVİKA SONUÇLAR</h1>
     <hr />
     <div class="col col-md-6 w-50">
@@ -8,16 +19,61 @@
         <thead>
           <tr>
             <th scope="col">index</th>
+            <th scope="col">Parametreler</th>
             <th scope="col">Sonuçlar</th>
           </tr>
         </thead>
         <tbody>
-          {% for item in range(17) %}
+          {% for item in range(16) %}
           <tr>
             <th scope="row">{{item+1}}</th>
-            {% if results_|length < 1 %}
-            <td>Seçim Yapılmadı!</td>
+            {% if item == 3 %}
+            <td>{{ param[item] }}</td>
+            <td>
+              <div class="dropdown">
+                <a
+                  id="drowdown-text"
+                  class="dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{results_[item]}}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {% if results_[0] == 'Orta Sınıf' %}
+
+                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
+                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
+                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
+                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
+                  <a id="option5" class="dropdown-item"
+                    >Mayın ve Engel Temizleme Sistemi</a
+                  >
+                  {% elif results_[0] =='Ağır Sınıf' %}
+
+                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
+                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
+                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
+                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
+                  <a id="option5" class="dropdown-item"
+                    >Mayın ve Engel Temizleme Sistemi</a
+                  >
+                  {% elif results_[0] == 'Küçük Sınıf' %}
+                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
+                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
+                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
+                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
+                  {% elif results_[0] == 'Hafif Sınıf' %}
+                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
+                  {% endif %}
+                </div>
+              </div>
+            </td>
+
             {% else %}
+            <td>{{ param[item] }}</td>
             <td>{{results_[item]}}</td>
             {% endif %}
           </tr>
@@ -28,8 +84,9 @@
     <div
       class="col col-md-6 d-flex flex-column align-content-center justify-content-center"
     >
-      <div class="col col-md-12 mx-1">
+      <div class="col col-md-12 mx-5">
         <model-viewer
+          id="model_3d"
           src="{{ url_for('static', filename=img_3) }}"
           ar
           ar-modes="webxr scene-viewer quick-look"
@@ -46,6 +103,7 @@
       <div class="col col-md-12 mx-5">
         <img
           class="img_2d"
+          id="model_2d"
           src="{{url_for('static',filename=img_2)}}"
           alt="2d Resim"
         />
@@ -53,4 +111,130 @@
     </div>
   </div>
 </div>
+<script>
+  const url2D = document.getElementById("model_2d");
+  const url3D = document.getElementById("model_3d");
+
+  const drowdown = document.getElementById("drowdown-text");
+
+  const option1 = document?.getElementById("option1");
+  const option2 = document?.getElementById("option2");
+  const option3 = document?.getElementById("option3");
+  const option4 = document?.getElementById("option4");
+  const option5 = document?.getElementById("option5");
+
+  option1.addEventListener("click", () => {
+    drowdown.innerText = option1.innerText;
+  });
+  option2.addEventListener("click", () => {
+    drowdown.innerText = option2.innerText;
+  });
+  option3.addEventListener("click", () => {
+    drowdown.innerText = option3.innerText;
+  });
+  option4.addEventListener("click", () => {
+    drowdown.innerText = option4.innerText;
+  });
+  option5.addEventListener("click", () => {
+    drowdown.innerText = option5.innerText;
+  });
+
+  const tds = document.getElementsByTagName("td");
+
+  if (option1) {
+    option1.addEventListener("click", (event) => {
+      let results_ = [];
+
+      for (let x = 0; x < tds.length; x++) {
+        if (x % 2 !== 0) {
+          results_.push(tds[x].innerText);
+        }
+      }
+
+      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
+      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
+      console.log("3d", url3D.src);
+      console.log("2d", url2D.src);
+    });
+  }
+  if (option2) {
+    option2.addEventListener("click", (event) => {
+      let results_ = [];
+
+      for (let x = 0; x < tds.length; x++) {
+        if (x % 2 !== 0) {
+          results_.push(tds[x].innerText);
+        }
+      }
+      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
+      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
+      console.log(url3D.src);
+      console.log(url2D.src);
+    });
+  }
+  if (option3) {
+    option3.addEventListener("click", (event) => {
+      let results_ = [];
+
+      for (let x = 0; x < tds.length; x++) {
+        if (x % 2 !== 0) {
+          results_.push(tds[x].innerText);
+        }
+      }
+
+      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
+      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
+    });
+  }
+  if (option4) {
+    option4.addEventListener("click", (event) => {
+      let results_ = [];
+
+      for (let x = 0; x < tds.length; x++) {
+        if (x % 2 !== 0) {
+          results_.push(tds[x].innerText);
+        }
+      }
+      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
+      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
+    });
+  }
+
+  if (option5) {
+    option5.addEventListener("click", (event) => {
+      let results_ = [];
+
+      for (let x = 0; x < tds.length; x++) {
+        if (x % 2 !== 0) {
+          results_.push(tds[x].innerText);
+        }
+      }
+      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
+      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
+    });
+  }
+
+  const btnSavika = document.querySelector(".btn-savika");
+
+  if (btnSavika) {
+    btnSavika.addEventListener("click", (event) => {
+      let progressBar = document.getElementById("progress-bar");
+      let width = 0;
+      let interval = 1000; // Interval time in milliseconds
+      let increment = (100 - width) / (5000 / interval); // Increment amount
+
+      function increaseProgress() {
+        if (width >= 100) {
+          clearInterval(progressInterval);
+        } else {
+          width += increment;
+          progressBar.style.width = width + "%";
+          progressBar.setAttribute("aria-valuenow", width);
+        }
+      }
+
+      let progressInterval = setInterval(increaseProgress, interval);
+    });
+  }
+</script>
 {% endblock %}

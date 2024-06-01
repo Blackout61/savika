@@ -1,10 +1,8 @@
-// Multi-step form handler:
+const multiStepForm = document?.querySelector("[data-multi-step]");
+const formSteps = [...multiStepForm?.querySelectorAll("[data-step]")];
+const buttons = document?.querySelectorAll("button");
 
-const multiStepForm = document.querySelector("[data-multi-step]");
-const formSteps = [...multiStepForm.querySelectorAll("[data-step]")];
-const buttons = document.querySelectorAll("button");
-
-let currentStep = formSteps.findIndex((step) => {
+let currentStep = formSteps?.findIndex((step) => {
   return step.classList.contains("active");
 });
 
