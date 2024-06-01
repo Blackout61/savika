@@ -174,13 +174,8 @@ input[type="radio"]:checked {
 /* Multiform */
 
 .cardForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
   max-height: 100%;
   position: absolute;
-  left: 25rem;
   background-color: #f1f1f1;
   border: 1px solid #333;
   border-radius: 0.5rem;
@@ -197,7 +192,6 @@ input[type="radio"]:checked {
   gap: 0.25rem;
   overflow: hidden;
   margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
   padding: 1rem;
   margin-left: auto;
   margin-right: auto;
@@ -226,8 +220,8 @@ li > input[type="radio"] {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  max-width: 30vw;
-  max-height: 20vw;
+  width: 40vw;
+  max-height: 30vw;
   border-radius: 0.5rem;
 }
 
@@ -240,16 +234,11 @@ li > input[type="radio"] {
 }
 
 .multi-step-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
   position: relative;
   overflow: hidden;
   min-height: 850px;
   text-align: center;
   min-width: 20vw;
-  margin-left: -5rem;
 }
 
 .submit-area {
@@ -277,17 +266,15 @@ button {
   margin-left: 12.5vw;
 }
 
+.container {
+  min-height: 100% !important;
+  min-width: 100% !important;
+}
+
 .savika-sonuc-container {
   clear: both;
-  margin: 0;
-  padding: 0;
   min-width: 100vw;
   min-height: 100vh;
-  margin-top: -4.5vh;
-  margin-left: -1.7vw;
-  margin-bottom: -4.5vh;
-  background-image: url("../imgs/10.png");
-  background-color: rgb(34, 233, 167);
 }
 
 .savika-sonuc {
@@ -324,4 +311,19 @@ button {
   text-transform: uppercase;
   text-align: center;
   margin-top: 2rem;
+}
+
+model-viewer {
+  height: 480px;
+  width: 480px;
+}
+
+.img_2d {
+  margin-left: 2rem;
+  height: 320px;
+  width: 320px;
+}
+.btn-savika {
+  margin: 0 auto;
+  min-width: 30vw;
 }

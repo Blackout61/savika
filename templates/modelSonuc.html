@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h1 class="text-center my-3">SAVİKA SONUÇLAR</h1>
+    <hr />
+    <div class="col col-md-6 w-50">
+      <table class="table table-hover table-secondary table-striped res-table">
+        <thead>
+          <tr>
+            <th scope="col">index</th>
+            <th scope="col">Sonuçlar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in range(17) %}
+          <tr>
+            <th scope="row">{{item+1}}</th>
+            {% if results_|length < 1 %}
+            <td>Seçim Yapılmadı!</td>
+            {% else %}
+            <td>{{results_[item]}}</td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="col col-md-6 d-flex flex-column align-content-center justify-content-center"
+    >
+      <div class="col col-md-12 mx-1">
+        <model-viewer
+          src="{{ url_for('static', filename=img_3) }}"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          camera-controls
+          tone-mapping="neutral"
+          poster="poster.webp"
+          shadow-intensity="1"
+        >
+          <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+          </div>
+        </model-viewer>
+      </div>
+      <div class="col col-md-12 mx-5">
+        <img
+          class="img_2d"
+          src="{{url_for('static',filename=img_2)}}"
+          alt="2d Resim"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

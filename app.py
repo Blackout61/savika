@@ -1,8 +1,9 @@
 from flask import Flask, render_template, redirect, session, url_for, request
 import os
-from myForms import *
-from savikaResults import savika_results, model_giris_degerleri
+from savika.myForms import *
+from savika.savikaResults import savika_results, model_giris_degerleri, model_sonuc
 import pandas as pd
+import time
 
 app = Flask(__name__)
 
@@ -62,17 +63,12 @@ def sartnameSonuc():
         results = session["results"]
         savika = savika_results(results)
         res = model_giris_degerleri(savika)
-
-        print("//////////////////////////////////////////")
-
-        print("Response Log ***", res)
-        print("//////////////////////////////////////////")
-        df = pd.DataFrame(res)
-        print("DF => ", df)
+        session['model_sonuc'] = res
 
     except:
         results = []
         savika = {}
+
     return render_template("sartnameSonuc.html", results=results, res=res)
 
 
@@ -86,5 +82,30 @@ def veriTabani():
     return render_template("veriTabani.html", data=data)
 
 
+@app.route("/modelSonuc")
+def modelSonuc():
+
+    secimler = session['model_sonuc']
+    savika = session['results']
+    results_ = savika_results(savika)
+    results_ = list(results_.values())
+
+    res = model_sonuc(secimler)
+
+    del results_[0]
+
+    results_.insert(14, res)
+    results_.insert(15, f"{res} Şasi")
+
+    path2d = f"/imgs/2D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.JPG"
+    path3d = f"/imgs/3D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.glb"
+
+    # session.clear()
+
+    time.sleep(7)
+
+    return render_template("modelSonuc.html", res=res, results_=results_, img_3=path3d, img_2=path2d)
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5151)

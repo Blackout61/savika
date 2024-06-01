@@ -1,16 +1,16 @@
-0-30000$ 
-Hafif Sınıf 
-Manuel 
-RF Kumanda 
-Gözetleme Sistemi 
-0-20 kw - Elektrikli 
+100000$ + 
+Ağır Sınıf 
+Otonom 
+Uydu 
+Silah Sistemi 
+400+ hp + 75+ kw Hibrit 
 Engebeli-Yumuşak Zemin 
-Aktif Dönüşlü Yönlendirme Sistemi 
-Kauçuk-Elastomerik 
-Polimer Malzemeler 
-Pil 
-Sabit Oranlı Transmisyon 
-Dinamik Frenleme 
-Hava Soğutmalı 
-Aküsüz Sistem 
+Diferansiyel Yönlendirme Sistemi 
+Burulabilen Mil 
+Çelik Alaşımlar 
+Yakıt Tankı 
+Değişken Oranlı Transmisyon 
+EBS (Elektronik Fren Sistemi) 
+Su Soğutmalı 
+28V-Akü 
 Sensörler | Kameralar | İşlemciler | Güç Dağıtım Üniteleri | Kablolar
