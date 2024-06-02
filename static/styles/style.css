@@ -340,3 +340,18 @@ model-viewer {
 .dropdown-toggle {
   text-decoration: none !important;
 }
+
+.container-upper {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  border: 1px solid #ddd;
+}
+
+.img-container {
+  visibility: collapse;
+}
+
+.table tr.tblrow:hover + tr {
+  visibility: visible;
+}

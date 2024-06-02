@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           {% for item in range(16) %}
-          <tr>
+          <tr class="tblrow">
             <th scope="row">{{item+1}}</th>
             {% if item == 3 %}
             <td>{{ param[item] }}</td>
@@ -72,10 +72,27 @@
               </div>
             </td>
 
-            {% else %}
+            {% else %} {% if param[item] == 'Sınıf' %}
             <td>{{ param[item] }}</td>
+            {% elif param[item] == 'Elektronik Üniteler' %}
+            <td>{{ param[item] }}</td>
+            {% else %}
+
+            <td>{{ param[item] }}</td>
+            {% endif %}
+
             <td>{{results_[item]}}</td>
             {% endif %}
+          </tr>
+          <tr class="img-container">
+            <td colspan="3">
+              <img
+                height="150px"
+                width="500px"
+                src="{{ url_for('static', filename='/imgs/Baloncuklar/' ~ item ~ '.png') }}"
+                alt="img"
+              />
+            </td>
           </tr>
           {% endfor %}
         </tbody>
@@ -111,6 +128,7 @@
     </div>
   </div>
 </div>
+
 <script>
   const url2D = document.getElementById("model_2d");
   const url3D = document.getElementById("model_3d");
@@ -139,7 +157,8 @@
     drowdown.innerText = option5.innerText;
   });
 
-  const tds = document.getElementsByTagName("td");
+  const tds = document.querySelectorAll("tr.tblrow td");
+  console.log(tds);
 
   if (option1) {
     option1.addEventListener("click", (event) => {
@@ -157,6 +176,7 @@
       console.log("2d", url2D.src);
     });
   }
+
   if (option2) {
     option2.addEventListener("click", (event) => {
       let results_ = [];
@@ -172,6 +192,7 @@
       console.log(url2D.src);
     });
   }
+
   if (option3) {
     option3.addEventListener("click", (event) => {
       let results_ = [];
@@ -186,6 +207,7 @@
       url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
     });
   }
+
   if (option4) {
     option4.addEventListener("click", (event) => {
       let results_ = [];
@@ -237,4 +259,5 @@
     });
   }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 {% endblock %}

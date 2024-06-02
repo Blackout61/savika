@@ -1,16 +1,16 @@
-30000$-100000$ 
+100000$ + 
 Ağır Sınıf 
-Yarı-Otonom 
-Uzaktan Kumanda Modulu 
-Gözetleme Sistemi 
-300+ kw - Elektrikli 
-Düz-Yumuşak Zemin 
-Aktif Dönüşlü Yönlendirme Sistemi 
-Hidropnömatik 
-Alüminyum Alaşımlar 
-Yakıt Hücresi 
-Elektrikli Transmisyon 
-Rejenaratif Frenleme 
+Otonom 
+Uydu 
+Mayın ve Engel Temizleme Sistemi 
+400+ hp + 75+ kw Hibrit 
+Engebeli-Yumuşak Zemin 
+Diferansiyel Yönlendirme Sistemi 
+Burulabilen Mil 
+Çelik Alaşımlar 
+Yakıt Tankı 
+Değişken Oranlı Transmisyon 
+EBS (Elektronik Fren Sistemi) 
 Su Soğutmalı 
 28V-Akü 
 Sensörler | Kameralar | İşlemciler | Güç Dağıtım Üniteleri | Kablolar
