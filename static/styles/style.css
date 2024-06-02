@@ -87,8 +87,8 @@ li {
 }
 
 input[type="radio"]:checked {
-  border: 1px solid #f90;
-  color: #f90;
+  background-color: #f90 !important;
+  border: rgb(14, 230, 7) !important;
 }
 
 .dropdown button {
@@ -263,7 +263,14 @@ button {
 .ortala {
   margin: 0 auto;
   text-align: center;
-  margin-left: 12.5vw;
+  margin-left: 27vw;
+  margin-top: 2rem;
+}
+.ortala form {
+  height: 50vh;
+}
+.ortala form img {
+  height: 40vh;
 }
 
 .container {
@@ -320,6 +327,8 @@ model-viewer {
   margin-top: 2.5rem;
   height: 300px;
   width: 480px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .img_2d {
@@ -330,6 +339,8 @@ model-viewer {
   height: 380px;
   width: 480px;
   margin-bottom: 1.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .btn-savika {
@@ -341,17 +352,18 @@ model-viewer {
   text-decoration: none !important;
 }
 
-.container-upper {
-  position: relative;
-  width: 100px;
-  height: 50px;
-  border: 1px solid #ddd;
+.detail-link {
+  text-decoration: none;
+  color: blue;
+  cursor: pointer;
 }
 
-.img-container {
-  visibility: collapse;
+.detail-link:hover {
+  color: rgb(1, 1, 153);
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.table tr.tblrow:hover + tr {
-  visibility: visible;
+.model-sonuc {
+  margin-left: 2rem;
 }

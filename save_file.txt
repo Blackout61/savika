@@ -1,8 +1,8 @@
 100000$ + 
-Uzunluk: 6+ m | Genişlik: 2+ m | Yükseklik: 2+ m | Dik Engel Aşma: 1.5+ m | Hendek Aşma: 1.5+ m | Eğim: 40-60% | Ağırlık: 15000+ kg 
+Uzunluk: 2-6 m | Genişlik: 1-3 m | Yükseklik: 1-2 m | Dik Engel Aşma: 0.5-1.5 m | Hendek Aşma: 0.5-1.5 m | Eğim: 40-60% | Ağırlık: 1000-15000 kg 
 3. Seviye 
 x km² 
-Mayın ve Engel Temizleme 
-400+ hp + 75+ kw Hibrit 
+Saldırı ve Geri Emniyet 
+100-400 hp + 20-75 kw - Hibrit 
 Engebeli-Yumuşak Zemin 
 Dar Dönüş Yarıçapı

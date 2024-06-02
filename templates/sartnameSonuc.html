@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="savika-sonuc-container">
+      <div class="container savika-sonuc-container">
         <div class="progress">
           <div
             class="progress-bar progress-bar-striped bg-success"
@@ -17,7 +17,7 @@
           ></div>
         </div>
         <h1 class="sonuc_">Şartname Seçimleri</h1>
-        <div class="savika-sonuc" id="result">
+        <div class="savika-sonuc w-100" id="result">
           <table
             class="table table-hover table-secondary table-striped res-table"
           >
@@ -41,11 +41,11 @@
               {% endfor %}
             </tbody>
           </table>
-        </div>
-        <div
-          class="d-flex flex-column justify-content-center align-content-center"
-        >
-          <a href="/modelSonuc" class="btn btn-primary btn-savika">
+          <a
+            href="/modelSonuc"
+            id="btnSavikaResultProgress"
+            class="btn btn-primary model-sonuc w-100"
+          >
             <i class="fa-brands fa-instalod"></i> Savika Başlat
           </a>
         </div>
@@ -55,7 +55,7 @@
 </div>
 
 <script>
-  const btnSavika = document.querySelector(".btn-savika");
+  const btnSavika = document.getElementById("btnSavikaResultProgress");
 
   if (btnSavika) {
     btnSavika.addEventListener("click", (event) => {

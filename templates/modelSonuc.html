@@ -1,17 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <div class="container">
   <div class="row">
-    <div class="progress">
-      <div
-        class="progress-bar progress-bar-striped bg-success"
-        role="progressbar"
-        aria-valuenow="0"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        style=""
-        id="progress-bar"
-      ></div>
-    </div>
     <h1 class="text-center my-3">SAVİKA SONUÇLAR</h1>
     <hr />
     <div class="col col-md-6 w-50">
@@ -28,7 +17,15 @@
           <tr class="tblrow">
             <th scope="row">{{item+1}}</th>
             {% if item == 3 %}
-            <td>{{ param[item] }}</td>
+            <td>
+              <a
+                class="detail-link"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop{{item}}"
+              >
+                {{ param[item] }}
+              </a>
+            </td>
             <td>
               <div class="dropdown">
                 <a
@@ -72,28 +69,65 @@
               </div>
             </td>
 
-            {% else %} {% if param[item] == 'Sınıf' %}
-            <td>{{ param[item] }}</td>
-            {% elif param[item] == 'Elektronik Üniteler' %}
-            <td>{{ param[item] }}</td>
             {% else %}
 
-            <td>{{ param[item] }}</td>
-            {% endif %}
+            <td>
+              <a
+                class="detail-link"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop{{item}}"
+              >
+                {{ param[item] }}
+              </a>
+            </td>
 
             <td>{{results_[item]}}</td>
             {% endif %}
           </tr>
-          <tr class="img-container">
-            <td colspan="3">
-              <img
-                height="150px"
-                width="500px"
-                src="{{ url_for('static', filename='/imgs/Baloncuklar/' ~ item ~ '.png') }}"
-                alt="img"
-              />
-            </td>
-          </tr>
+          <div
+            class="modal fade"
+            id="staticBackdrop{{item}}"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content bg-secondary text-white">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    Parametre Detay
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body text-center">
+                  <img
+                    class="rounded"
+                    height="150px"
+                    width="400px"
+                    src="{{ url_for('static', filename='/imgs/Baloncuklar/' ~ item ~ '.png') }}"
+                    alt="img"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                  >
+                    Kapat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {% endfor %}
         </tbody>
       </table>
