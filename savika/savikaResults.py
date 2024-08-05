@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import pickle
 from tensorflow.keras.models import load_model  # type:ignore
 
@@ -141,7 +140,7 @@ def savika_results(results):
         faydaliYuk = "Gözetleme Sistemi"
 
     elif ((agirlikSinifi == "Hafif Sınıf" or agirlikSinifi == "Küçük Sınıf" or agirlikSinifi == "Orta Sınıf" or agirlikSinifi == "Ağır Sınıf") and results[4] == "Bomba İmha"):
-        faydaliYuk = "Manipülatör Sistemi"
+        faydaliYuk = "Bomba İmha Sistemi"
 
     elif ((agirlikSinifi == "Küçük Sınıf" or agirlikSinifi == "Orta Sınıf" or agirlikSinifi == "Ağır Sınıf") and results[4] == "Lojistik"):
         faydaliYuk = "Taşıyıcı Sistemi"
@@ -568,11 +567,11 @@ def savika_results(results):
 
 # 15 - Elektrik Sistemi
 
-    if (agirlikSinifi == "Hafif Sınıf" and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Manipülatör Sistemi")):
+    if (agirlikSinifi == "Hafif Sınıf" and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Bomba İmha Sistemi")):
         elektrikSis = "Aküsüz Sistem"
-    elif (agirlikSinifi == "Küçük Sınıf" and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Manipülatör Sistemi" or faydaliYuk == "Silah Sistemi" or faydaliYuk == "Taşıyıcı Sistemi")):
+    elif (agirlikSinifi == "Küçük Sınıf" and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Bomba İmha Sistemi" or faydaliYuk == "Silah Sistemi" or faydaliYuk == "Taşıyıcı Sistemi")):
         elektrikSis = "12V-Akü"
-    elif ((agirlikSinifi == "Orta Sınıf" or agirlikSinifi == "Ağır Sınıf") and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Manipülatör Sistemi" or faydaliYuk == "Silah Sistemi" or faydaliYuk == "Mayın ve Engel Temizleme Sistemi")):
+    elif ((agirlikSinifi == "Orta Sınıf" or agirlikSinifi == "Ağır Sınıf") and (faydaliYuk == "Gözetleme Sistemi" or faydaliYuk == "Bomba İmha Sistemi" or faydaliYuk == "Silah Sistemi" or faydaliYuk == "Mayın ve Engel Temizleme Sistemi")):
         elektrikSis = "28V-Akü"
     elif ((agirlikSinifi == "Orta Sınıf" or agirlikSinifi == "Ağır Sınıf") and faydaliYuk == "Taşıyıcı Sistemi"):
         elektrikSis = "24V-Akü"
@@ -668,7 +667,7 @@ def model_giris_degerleri(sonuclar: dict) -> dict:
 
     if (sonuclar[5] == 'Gözetleme Sistemi'):
         input_arr['faydali_yuk'] = 1
-    elif (sonuclar[5] == 'Manipülatör Sistemi'):
+    elif (sonuclar[5] == 'Bomba İmha Sistemi'):
         input_arr['faydali_yuk'] = 2
     elif (sonuclar[5] == 'Taşıyıcı Sistemi'):
         input_arr['faydali_yuk'] = 3

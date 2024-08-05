@@ -1,14 +1,13 @@
 const multiStepForm = document?.querySelector("[data-multi-step]");
-const formSteps = [...multiStepForm?.querySelectorAll("[data-step]")];
+const sorular = [...multiStepForm?.querySelectorAll("[soru]")];
 const buttons = document?.querySelectorAll("button");
 
-let currentStep = formSteps?.findIndex((step) => {
-  return step.classList.contains("active");
-});
+console.log("sorular", sorular);
+
+let currentStep = 0;
 
 // Otomatik olarak birinci formu gösteriri
-if (currentStep < 0) {
-  currentStep = 0;
+if (currentStep === 0) {
   showCurrentStep();
 }
 
@@ -18,6 +17,10 @@ multiStepForm.addEventListener("click", (e) => {
   const radios_5 = document.getElementsByName("radio_btn_5");
   const radios_6 = document.getElementsByName("radio_btn_6");
 
+  const liElements_2 = document.querySelectorAll("#radio_btn_2 li");
+  const liElements_5 = document.querySelectorAll("#radio_btn_5 li");
+  const liElements_6 = document.querySelectorAll("#radio_btn_6 li");
+
   console.log("Soru " + currentStep);
 
   /* 1. sorunun 1. seçeneği seçili ise 2. sorunun 4. seceneği aktif olmayacak!
@@ -25,36 +28,41 @@ multiStepForm.addEventListener("click", (e) => {
      1. sorunun 3. seceneği secili ise 2. sorunun 1-2 secenekleri aktif olmayacak!
   */
   if (radios[0].checked) {
-    radios_2[0].disabled = false;
-    radios_2[1].disabled = false;
-    radios_2[2].disabled = false;
-    radios_2[3].disabled = true;
+    liElements_2[0].classList.remove("hidden");
+    liElements_2[1].classList.remove("hidden");
+    liElements_2[2].classList.remove("hidden");
+    liElements_2[3].classList.add("hidden");
   } else if (radios[1].checked) {
-    radios_2[0].disabled = true;
-    radios_2[1].disabled = false;
-    radios_2[2].disabled = false;
-    radios_2[3].disabled = false;
+    liElements_2[0].classList.add("hidden");
+    liElements_2[1].classList.remove("hidden");
+    liElements_2[2].classList.remove("hidden");
+    liElements_2[3].classList.remove("hidden");
   } else if (radios[2].checked) {
-    radios_2[0].disabled = true;
-    radios_2[1].disabled = true;
-    radios_2[2].disabled = false;
-    radios_2[3].disabled = false;
+    liElements_2[0].classList.add("hidden");
+    liElements_2[1].classList.add("hidden");
+    liElements_2[2].classList.remove("hidden");
+    liElements_2[3].classList.remove("hidden");
   }
 
   // 2. sorunun 1. seceneği secili ise 5. sorunun 3-4-5 secenekleri aktif olmayacak
   // 2. sorunun 2. seceneği secilirse 5. sorunun 5. seceneği aktif olmayacak
   if (currentStep === 3) {
     if (radios_2[0].checked) {
-      radios_5[2].disabled = true;
-      radios_5[3].disabled = true;
-      radios_5[4].disabled = true;
+      liElements_5[2].classList.add("hidden");
+      liElements_5[3].classList.add("hidden");
+      liElements_5[4].classList.add("hidden");
     } else if (radios_2[1].checked) {
-      radios_5[4].disabled = true;
+      liElements_5[2].classList.remove("hidden");
+      liElements_5[3].classList.remove("hidden");
+      liElements_5[4].classList.add("hidden");
     } else {
       radios_5[2].disabled = false;
       radios_5[3].disabled = false;
       radios_5[4].disabled = false;
-      radios_5[4].disabled = false;
+      radios_5[4].disabled = false; //+++++?????
+      liElements_5[2].classList.remove("hidden");
+      liElements_5[3].classList.remove("hidden");
+      liElements_5[4].classList.remove("hidden");
     }
   }
   /*
@@ -66,49 +74,49 @@ multiStepForm.addEventListener("click", (e) => {
 
   if (currentStep === 4) {
     if (radios_2[0].checked) {
-      radios_6[0].disabled = false;
-      radios_6[1].disabled = true;
-      radios_6[2].disabled = true;
-      radios_6[3].disabled = true;
-      radios_6[4].disabled = true;
-      radios_6[5].disabled = true;
-      radios_6[6].disabled = true;
-      radios_6[7].disabled = true;
-      radios_6[8].disabled = true;
-      radios_6[9].disabled = true;
+      liElements_6[0].classList.remove("hidden");
+      liElements_6[1].classList.add("hidden");
+      liElements_6[2].classList.add("hidden");
+      liElements_6[3].classList.add("hidden");
+      liElements_6[4].classList.add("hidden");
+      liElements_6[5].classList.add("hidden");
+      liElements_6[6].classList.add("hidden");
+      liElements_6[7].classList.add("hidden");
+      liElements_6[8].classList.add("hidden");
+      liElements_6[9].classList.add("hidden");
     } else if (radios_2[1].checked) {
-      radios_6[0].disabled = true;
-      radios_6[1].disabled = false;
-      radios_6[2].disabled = true;
-      radios_6[3].disabled = true;
-      radios_6[4].disabled = false;
-      radios_6[5].disabled = true;
-      radios_6[6].disabled = true;
-      radios_6[7].disabled = true;
-      radios_6[8].disabled = false;
-      radios_6[9].disabled = true;
+      liElements_6[0].classList.add("hidden");
+      liElements_6[1].classList.remove("hidden");
+      liElements_6[2].classList.add("hidden");
+      liElements_6[3].classList.add("hidden");
+      liElements_6[4].classList.remove("hidden");
+      liElements_6[5].classList.add("hidden");
+      liElements_6[6].classList.add("hidden");
+      liElements_6[7].classList.remove("hidden");
+      liElements_6[8].classList.add("hidden");
+      liElements_6[9].classList.add("hidden");
     } else if (radios_2[2].checked) {
-      radios_6[0].disabled = true;
-      radios_6[1].disabled = true;
-      radios_6[2].disabled = false;
-      radios_6[3].disabled = true;
-      radios_6[4].disabled = true;
-      radios_6[5].disabled = false;
-      radios_6[6].disabled = true;
-      radios_6[7].disabled = true;
-      radios_6[8].disabled = false;
-      radios_6[9].disabled = true;
+      liElements_6[0].classList.add("hidden");
+      liElements_6[1].classList.add("hidden");
+      liElements_6[2].classList.remove("hidden");
+      liElements_6[3].classList.add("hidden");
+      liElements_6[4].classList.add("hidden");
+      liElements_6[5].classList.remove("hidden");
+      liElements_6[6].classList.add("hidden");
+      liElements_6[7].classList.add("hidden");
+      liElements_6[8].classList.remove("hidden");
+      liElements_6[9].classList.add("hidden");
     } else if (radios_2[3].checked) {
-      radios_6[0].disabled = true;
-      radios_6[1].disabled = true;
-      radios_6[2].disabled = true;
-      radios_6[3].disabled = false;
-      radios_6[4].disabled = true;
-      radios_6[5].disabled = true;
-      radios_6[6].disabled = false;
-      radios_6[7].disabled = true;
-      radios_6[8].disabled = true;
-      radios_6[9].disabled = false;
+      liElements_6[0].classList.add("hidden");
+      liElements_6[1].classList.add("hidden");
+      liElements_6[2].classList.add("hidden");
+      liElements_6[3].classList.remove("hidden");
+      liElements_6[4].classList.add("hidden");
+      liElements_6[5].classList.add("hidden");
+      liElements_6[6].classList.remove("hidden");
+      liElements_6[7].classList.add("hidden");
+      liElements_6[8].classList.add("hidden");
+      liElements_6[9].classList.remove("hidden");
     }
   }
 
@@ -121,7 +129,7 @@ multiStepForm.addEventListener("click", (e) => {
   } else {
     return;
   }
-  const inputs = [...formSteps[currentStep].querySelectorAll("input")];
+  const inputs = [...sorular[currentStep].querySelectorAll("input")];
   const allValid = inputs.every((input) => input.checkValidity());
   if (allValid) {
     currentStep += incrementor;
@@ -130,32 +138,48 @@ multiStepForm.addEventListener("click", (e) => {
 });
 
 function showCurrentStep() {
-  formSteps.forEach((step, index) => {
-    step.classList.toggle("active", index === currentStep);
+  sorular.forEach((step, index) => {
+    console.log("Step---", step);
+    if (index === currentStep) {
+      step.classList.remove("hidden");
+    } else {
+      step.classList.add("hidden");
+    }
   });
 }
 
-// Form radio control of the radio buttons!..
+// Form radio control of the radio buttons!.
 
-const btnSubmit = document.getElementById("submit");
-const loadingImage = document.getElementById("loading-img");
+// Belirli sınıfa sahip div içindeki ul içindeki input etiketlerini seçmek
+const inputs = document.querySelectorAll("#yanit ul li input");
+const labels = document.querySelectorAll("#yanit ul li label");
 
-btnSubmit.addEventListener("click", (e) => {
-  const items = document.querySelectorAll('input[type="radio"]:checked');
-  if (items.length != 8) {
-    alert(
-      `${items.length} Soruyu cevapladiniz, ${
-        8 - items.length
-      } tane soruyu cevaplamalısınız!`
-    );
-  } else {
-    showLoading();
-  }
+inputs.forEach((input) => {
+  input.classList.add("hidden", "peer");
 });
 
-function showLoading() {
-  loadingImage.style.display = "block";
-  setTimeout(() => {
-    loadingImage.style.display = "none";
-  }, 2000);
-}
+labels.forEach((label) => {
+  label.classList.add(
+    "inline-flex",
+    "items-center",
+    "w-full",
+    "px-5",
+    "py-2",
+    "text-gray-500",
+    "bg-white",
+    "border",
+    "border-gray-200",
+    "rounded-lg",
+    "cursor-pointer",
+    "dark:hover:text-gray-300",
+    "dark:border-gray-700",
+    "dark:peer-checked:text-blue-500",
+    "peer-checked:border-blue-600",
+    "peer-checked:text-blue-600",
+    "hover:text-gray-600",
+    "hover:bg-gray-100",
+    "dark:text-gray-400",
+    "dark:bg-gray-800",
+    "dark:hover:bg-gray-700"
+  );
+});

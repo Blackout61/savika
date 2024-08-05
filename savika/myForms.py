@@ -1,13 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, RadioField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, InputRequired
+from wtforms import RadioField, SubmitField
+from wtforms.validators import DataRequired, InputRequired
 
 
 class MyForm(FlaskForm):
     radio_btn = RadioField(validators=[InputRequired(), DataRequired()],
                            choices=[('0-30000$', '0-30000$'), ('30000$-100000$', '30000$-100000$'), ('100000$ +', '100000$ +')], default="")
 
-    radio_btn_3 = RadioField(validators=[InputRequired()],
+    radio_btn_3 = RadioField(validators=[InputRequired(), DataRequired()],
                              choices=[("1. Seviye", "1. Seviye"), ("2. Seviye", "2. Seviye"), ("3. Seviye", "3. Seviye")])
 
     radio_btn_4 = RadioField(validators=[InputRequired(), DataRequired()],

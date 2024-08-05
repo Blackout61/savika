@@ -1,82 +1,90 @@
 {% extends "base.html" %} {% block content %}
 
-<!-- Sonclar kismi-->
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="container savika-sonuc-container">
-        <div class="progress">
-          <div
-            class="progress-bar progress-bar-striped bg-success"
-            role="progressbar"
-            aria-valuenow="0"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style=""
-            id="progress-bar"
-          ></div>
-        </div>
-        <h1 class="sonuc_">Şartname Seçimleri</h1>
-        <div class="savika-sonuc w-100" id="result">
-          <table
-            class="table table-hover table-secondary table-striped res-table"
-          >
-            <thead>
-              <tr>
-                <th scope="col">Soru</th>
-
-                <th scope="col">Cevap</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in range(8) %}
-              <tr>
-                <th scope="row">{{item+1}}</th>
-                {% if results|length < 1 %}
-                <td>Seçim Yapılmadı!</td>
-                {% else %}
-                <td>{{results[item]}}</td>
-                {% endif %}
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <a
-            href="/modelSonuc"
-            id="btnSavikaResultProgress"
-            class="btn btn-primary model-sonuc w-100"
-          >
-            <i class="fa-brands fa-instalod"></i> Savika Başlat
-          </a>
-        </div>
-      </div>
+<div id="result" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <h1
+    class="mb-4 text-2xl text-center font-extrabold leading-tight text-gray-700 lg:mb-6 lg:text-3xl dark:text-gray-300"
+  >
+    Şartname Seçimleri
+  </h1>
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Soru</th>
+        <th scope="col" class="px-6 py-3">Cevap</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in range(8) %}
+      <tr
+        class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-900 border-b dark:border-gray-700"
+      >
+        <th
+          scope="row"
+          class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{item+1}}
+        </th>
+        {% if results|length < 1 %}
+        <td class="px-6 py-2">Seçim Yapılmadı!</td>
+        {% else %}
+        <td class="px-6 py-2">{{results[item]}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="mx-2 my-2">
+    <a
+      href="{{url_for('modelSonuc')}}"
+      id="btnSavika"
+      class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+    >
+      <i class="fa-brands fa-instalod pr-2"></i> Savika Başlat
+    </a>
+  </div>
+  <div
+    id="progressContainer"
+    class="hidden mx-2 my-2 bg-gray-200 rounded-full dark:bg-gray-700"
+  >
+    <div
+      class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+      style="width: 0%"
+      id="progressBar"
+    >
+      0%
     </div>
   </div>
 </div>
 
+<!-- Sonuclar kismi-->
 <script>
-  const btnSavika = document.getElementById("btnSavikaResultProgress");
+  document.getElementById("btnSavika").addEventListener("click", function () {
+    let btnSavika = document.getElementById("btnSavika");
+    let progressBar = document.getElementById("progressBar");
+    let progressContainer = document.getElementById("progressContainer");
+    let width = 0;
 
-  if (btnSavika) {
-    btnSavika.addEventListener("click", (event) => {
-      let progressBar = document.getElementById("progress-bar");
-      let width = 0;
-      let interval = 1000; // Interval time in milliseconds
-      let increment = (100 - width) / (5000 / interval); // Increment amount
+    progressContainer.classList.remove("hidden");
+    btnSavika.classList.add("hidden");
 
-      function increaseProgress() {
-        if (width >= 100) {
-          clearInterval(progressInterval);
-        } else {
-          width += increment;
-          progressBar.style.width = width + "%";
-          progressBar.setAttribute("aria-valuenow", width);
-        }
+    function updateProgressBar() {
+      if (width >= 100) {
+        clearInterval(interval);
+        progressContainer.classList.add("hidden");
+        btnSavika.classList.remove("hidden");
+      } else {
+        width += 1.67; // Her adımda %1.67 artırma
+        progressBar.style.width = width + "%";
+        progressBar.innerText = Math.round(width) + "%";
       }
+    }
 
-      let progressInterval = setInterval(increaseProgress, interval);
-    });
-  }
+    let interval = setInterval(updateProgressBar, 100); // Her 100 milisaniyede bir güncelle
+  });
 </script>
 
 {% endblock %}

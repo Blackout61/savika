@@ -2,16 +2,14 @@ from flask import Flask, render_template, redirect, session, url_for, request
 import os
 from savika.myForms import *
 from savika.savikaResults import savika_results, model_giris_degerleri, model_sonuc
-import pandas as pd
 import time
-from savika.recursive_form import MyRecursive1, MyRecursive2
 
 app = Flask(__name__)
+app.config["JSON_SORT_KEYS"] = False
 
 SECRET_KEY = os.urandom(24)
 
 app.config['SECRET_KEY'] = SECRET_KEY
-
 
 @app.route("/")
 def index():
@@ -73,21 +71,11 @@ def sartnameSonuc():
     return render_template("sartnameSonuc.html", results=results, res=res)
 
 
-@app.route("/veriTabani")
-def veriTabani():
 
-    data = pd.read_excel("VeriSeti.xlsx")
-
-    data = data.to_numpy()
-
-    return render_template("veriTabani.html", data=data)
-
-
-@app.route("/modelSonuc")
+@app.route("/modelSonuc", methods=["GET", "POST"])
 def modelSonuc():
 
     time.sleep(6)
-
     secimler = session['model_sonuc']
     savika = session['results']
     results_ = savika_results(savika)
@@ -120,8 +108,18 @@ def modelSonuc():
     results_.insert(14, res)
     results_.insert(15, f"{res} Şasi")
 
-    path2d = f"/imgs/2D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.JPG"
+    path2d = f"/imgs/2D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.jpg"
     path3d = f"/imgs/3D/{results_[0][0]}{results_[14][0]}{results_[3][0]}.glb"
+
+    session['model_sonuc2'] = results_
+
+    rapor=[] + results_
+    rapor.append(path2d)
+
+    with open("savika_rapor.txt", "w", encoding="utf-8") as f:
+        f.write(" \n".join([value for value in results_]))   
+
+    session["savika_rapor"]=rapor
 
     return render_template(
         "modelSonuc.html",
@@ -132,8 +130,30 @@ def modelSonuc():
         param=param,
     )
 
+
+@app.route("/hakkinda")
+def hakkinda():
+    return render_template("hakkinda.html")
+
+@app.route("/tanitim")
+def tanitim():
+    return render_template("tanitim.html")
     # session.clear()
 
+@app.route("/yardim")
+def yardim():
+    return render_template("yardim.html")
+
+@app.route("/iletisim")
+def iletisim():
+    return render_template("iletisim.html")
+
+@app.route("/savikaRapor")
+def savikaRapor():
+    time.sleep(6)
+    result=session["savika_rapor"]
+    secimler= session["results"]
+    return render_template("savikaRapor.html",result=result, secimler=secimler)
 
 if __name__ == "__main__":
     app.run(debug=True, port=6161)

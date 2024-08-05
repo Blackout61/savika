@@ -1,297 +1,707 @@
 {% extends "base.html" %} {% block content %}
-<div class="container">
-  <div class="row">
-    <h1 class="text-center my-3">SAVİKA SONUÇLAR</h1>
-    <hr />
-    <div class="col col-md-6 w-50">
-      <table class="table table-hover table-secondary table-striped res-table">
-        <thead>
-          <tr>
-            <th scope="col">index</th>
-            <th scope="col">Parametreler</th>
-            <th scope="col">Sonuçlar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in range(16) %}
-          <tr class="tblrow">
-            <th scope="row">{{item+1}}</th>
-            {% if item == 3 %}
-            <td>
-              <a
-                class="detail-link"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop{{item}}"
-              >
-                {{ param[item] }}
-              </a>
-            </td>
-            <td>
-              <div class="dropdown">
-                <a
-                  id="drowdown-text"
-                  class="dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {{results_[item]}}
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  {% if results_[0] == 'Orta Sınıf' %}
-
-                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
-                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
-                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
-                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
-                  <a id="option5" class="dropdown-item"
-                    >Mayın ve Engel Temizleme Sistemi</a
-                  >
-                  {% elif results_[0] =='Ağır Sınıf' %}
-
-                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
-                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
-                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
-                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
-                  <a id="option5" class="dropdown-item"
-                    >Mayın ve Engel Temizleme Sistemi</a
-                  >
-                  {% elif results_[0] == 'Küçük Sınıf' %}
-                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
-                  <a id="option2" class="dropdown-item">Bomba İmha Sistemi</a>
-                  <a id="option3" class="dropdown-item">Taşıyıcı Sistem</a>
-                  <a id="option4" class="dropdown-item">Silah Sistemi</a>
-                  {% elif results_[0] == 'Hafif Sınıf' %}
-                  <a id="option1" class="dropdown-item">Gözetleme Sistemi</a>
-                  {% endif %}
-                </div>
-              </div>
-            </td>
-
-            {% else %}
-
-            <td>
-              <a
-                class="detail-link"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop{{item}}"
-              >
-                {{ param[item] }}
-              </a>
-            </td>
-
-            <td>{{results_[item]}}</td>
-            {% endif %}
-          </tr>
-          <div
-            class="modal fade"
-            id="staticBackdrop{{item}}"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
+<div
+  id="print-section"
+  class="relative overflow-x-auto shadow-md sm:rounded-lg"
+>
+  <h1
+    class="mb-2 text-2xl text-center font-extrabold leading-tight text-gray-700 lg:mb-4 lg:text-3xl dark:text-gray-300"
+  >
+    SAVİKA Sonuçları
+  </h1>
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-4 py-3">#</th>
+        <th scope="col" class="px-4 py-3">Tasarım Katalogu</th>
+        <th scope="col" class="px-4 py-3">Parametreler</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in range(16) %}
+      <tr
+        class="tblrow odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-900 border-b dark:border-gray-700"
+      >
+        <th
+          scope="row"
+          class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{item+1}}
+        </th>
+        {% if item == 3 %}
+        <td class="px-6 py-2">
+          <a
+            data-modal-target="modal-{{ item }}"
+            data-modal-toggle="modal-{{ item }}"
+            class="hover:cursor-pointer hover:text-blue-700"
           >
-            <div class="modal-dialog">
-              <div class="modal-content bg-secondary text-white">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                    Parametre Detay
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body text-center">
-                  <img
-                    class="rounded"
-                    height="150px"
-                    width="400px"
-                    src="{{ url_for('static', filename='/imgs/Baloncuklar/' ~ item ~ '.png') }}"
-                    alt="img"
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    data-bs-dismiss="modal"
-                  >
-                    Kapat
-                  </button>
-                </div>
-              </div>
+            {{param[item]}}
+          </a>
+        </td>
+        <td class="px-6 py-2">
+          <select
+            id="myDropdown"
+            class="bg-transparent w-full border-none m-0 p-0"
+          >
+            <option value="{{results_[item]}}">{{results_[item]}}</option>
+
+            {% if results_[0] == 'Orta Sınıf' %}
+
+            <option value="Gözetleme Sis.">Gözetleme Sistemi</option>
+            <option value="Taşıyıcı Sistem">Taşıyıcı Sistem</option>
+            <option value="Bomba İmha Sis.">Bomba İmha Sistemi</option>
+            <option value="Silah Sis.">Silah Sistemi</option>
+            <option value="Mayın ve Engel Temizleme Sis.">
+              Mayın ve Engel Temizleme Sistemi
+            </option>
+
+            {% elif results_[0] =='Ağır Sınıf' %}
+
+            <option value="Gözetleme Sis.">Gözetleme Sistemi</option>
+            <option value="Taşıyıcı Sistem">Taşıyıcı Sistem</option>
+            <option value="Bomba İmha Sis.">Bomba İmha Sistemi</option>
+            <option value="Silah Sis.">Silah Sistemi</option>
+            <option value="Mayın ve Engel Temizleme Sis.">
+              Mayın ve Engel Temizleme Sistemi
+            </option>
+
+            {% elif results_[0] == 'Küçük Sınıf' %}
+
+            <option value="Gözetleme Sis.">Gözetleme Sistemi</option>
+            <option value="Taşıyıcı Sistem">Taşıyıcı Sistem</option>
+            <option value="Bomba İmha Sis.">Bomba İmha Sistemi</option>
+            <option value="Silah Sis.">Silah Sistemi</option>
+
+            {% elif results_[0] == 'Hafif Sınıf' %}
+
+            <option value="Gözetleme Sis.">Gözetleme Sistemi</option>
+
+            {% endif %}
+          </select>
+        </td>
+
+        {% else %}
+
+        <td class="px-6 py-2">
+          <a
+            data-modal-target="modal-{{ item }}"
+            data-modal-toggle="modal-{{ item }}"
+            class="hover:cursor-pointer hover:text-blue-700"
+          >
+            {{ param[item] }}
+          </a>
+        </td>
+
+        <td class="px-6 py-2">{{results_[item]}}</td>
+        {% endif %}
+      </tr>
+
+      <!-- Main modal -->
+      <div
+        id="modal-{{ item }}"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden bg-gray-700 bg-opacity-30 dark:bg-gray-50 dark:bg-opacity-30 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-3xl max-h-full">
+          <!-- Modal content -->
+          <div
+            class="relative bg-white border border-gray-300 rounded-lg shadow dark:border-gray-900 dark:bg-gray-700"
+          >
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                {{ param[item] }} Parametre Özellikleri
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="modal-{{ item }}"
+              >
+                <i class="fa-solid fa-xmark"></i>
+                <span class="sr-only">Modal kapat</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+              <p
+                class="text-base leading-relaxed text-gray-500 dark:text-gray-400"
+              >
+                Tasarımın alternatiflerinin üretilmesi, düzenlenmesi ve
+                fonksiyonel yapılarda oluşturulacak değişim işlemlerinin
+                yapılmasında kullanılmak için, mümkün olan en geniş sayıda çözüm
+                sayısı ortaya koyabilen tasarım katalogları kullanılmıştır.
+                Hazırlanan tasarım katalogları insansız kara aracı
+                parametrelerinin özellikleri hakkında bilgiler ve özel tanımlama
+                bilgilerini içermektedir. Tasarım katalogundaki her parametrenin
+                çeşitlerinin birbiri ile olan ilişkileri karşılaştırılmıştır.
+                Parametre çeşitlerinin karşılaştırılması ile insansız kara aracı
+                tasarımında en iyi alternatifin seçimi sağlanmaktadır.
+              </p>
+              <img
+                class="rounded"
+                height="380px"
+                width="760px"
+                src="{{ url_for('static', filename='/imgs/Baloncuklar/' ~ item ~ '.png') }}"
+                alt="img"
+              />
+            </div>
+            <!-- Modal footer -->
+            <div
+              class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
+            >
+              <button
+                data-modal-hide="modal-{{ item }}"
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Tamam
+              </button>
             </div>
           </div>
+        </div>
+      </div>
 
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div
-      class="col col-md-6 d-flex flex-column align-content-center justify-content-center"
-    >
-      <div class="col col-md-12 mx-5">
-        <model-viewer
-          id="model_3d"
-          src="{{ url_for('static', filename=img_3) }}"
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-          camera-controls
-          tone-mapping="neutral"
-          poster="poster.webp"
-          shadow-intensity="1"
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="flex justify-between">
+    <div class="flex">
+      <div id="btnRapor" class="mx-2 my-2">
+        <a
+          href="{{url_for('savikaRapor')}}"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
         >
-          <div class="progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-          </div>
-        </model-viewer>
+          <i class="fa-solid fa-file-pdf pr-2"></i> Rapor Oluştur
+        </a>
       </div>
-      <div class="col col-md-12 mx-5">
-        <img
-          class="img_2d"
-          id="model_2d"
-          src="{{url_for('static',filename=img_2)}}"
-          alt="2d Resim"
-        />
+
+      <div id="btnModel" class="my-2">
+        <a
+          data-modal-target="modal-model"
+          data-modal-toggle="modal-model"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
+          <i class="fa-solid fa-bars-staggered pr-2"></i> Model İKA
+        </a>
       </div>
+    </div>
+
+    <div>
+      <div id="btnGuncelle" class="mx-2 my-2 hidden">
+        <a
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 dark:focus:ring-slate-900"
+        >
+          <i class="fa-solid fa-arrows-rotate pr-2"></i> Güncelle
+        </a>
+      </div>
+    </div>
+
+    {% include '_modal.html' %}
+  </div>
+  <div
+    id="progressContainer"
+    class="hidden mx-2 my-2 bg-gray-200 rounded-full dark:bg-gray-700"
+  >
+    <div
+      class="bg-red-600 text-xs font-medium text-red-100 text-center p-0.5 leading-none rounded-full"
+      style="width: 0%"
+      id="progressBar"
+    >
+      0%
     </div>
   </div>
 </div>
+<div class="ml-2 flex flex-col content-center justify-content-center">
+  <model-viewer
+    class="w-[450px] h-[360px] border shadow-md border-gray-300 rounded-lg dark:border-gray-800"
+    id="model_3d"
+    width="450px"
+    height="360px"
+    src="{{ url_for('static', filename=img_3) }}"
+    camera-controls
+    tone-mapping="neutral"
+    poster="poster.webp"
+    shadow-intensity="1"
+  >
+  </model-viewer>
+  <div class="relative">
+    <img
+      class="w-[450px] h-[360px] hidden mt-2 shadow-md border border-gray-300 rounded-lg dark:border-gray-800"
+      id="fake_img"
+      width="450px"
+      height="360px"
+      src="{{url_for('static',filename=img_2)}}"
+      alt="2d Resim"
+    />
+    <div
+      id="img-loader1"
+      class="hidden px-3 py-1 text-base font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200 absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2"
+    >
+      Günceleniyor...
+    </div>
+  </div>
+  <div class="relative">
+    <img
+      class="w-[450px] h-[360px] mt-2 shadow-md border border-gray-300 rounded-lg dark:border-gray-800"
+      id="model_2d"
+      width="450px"
+      height="360px"
+      src="{{url_for('static',filename=img_2)}}"
+      alt="2d Resim"
+    />
+    <div
+      id="img-loader2"
+      class="hidden px-3 py-1 text-base font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200 absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2"
+    >
+      Günceleniyor...
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+<script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+
+<script
+  type="module"
+  src="{{url_for('static',filename='styles/model.js')}}"
+></script>
 
 <script>
-  const url2D = document.getElementById("model_2d");
-  const url3D = document.getElementById("model_3d");
-
-  const drowdown = document.getElementById("drowdown-text");
-
-  const option1 = document?.getElementById("option1");
-  const option2 = document?.getElementById("option2");
-  const option3 = document?.getElementById("option3");
-  const option4 = document?.getElementById("option4");
-  const option5 = document?.getElementById("option5");
-
-  option1.addEventListener("click", () => {
-    drowdown.innerText = option1.innerText;
-  });
-  option2.addEventListener("click", () => {
-    drowdown.innerText = option2.innerText;
-  });
-  option3.addEventListener("click", () => {
-    drowdown.innerText = option3.innerText;
-  });
-  option4.addEventListener("click", () => {
-    drowdown.innerText = option4.innerText;
-  });
-  option5.addEventListener("click", () => {
-    drowdown.innerText = option5.innerText;
-  });
-
   const tds = document.querySelectorAll("tr.tblrow td");
-  console.log(tds);
 
-  if (option1) {
-    option1.addEventListener("click", (event) => {
-      let results_ = [];
+  let results_ = [];
 
-      for (let x = 0; x < tds.length; x++) {
-        if (x % 2 !== 0) {
-          results_.push(tds[x].innerText);
-        }
-      }
-
-      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
-      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
-      console.log("3d", url3D.src);
-      console.log("2d", url2D.src);
-    });
+  for (let x = 0; x < tds.length; x++) {
+    if (x % 2 !== 0) {
+      results_.push(tds[x].innerText);
+    }
   }
 
-  if (option2) {
-    option2.addEventListener("click", (event) => {
-      let results_ = [];
-
-      for (let x = 0; x < tds.length; x++) {
-        if (x % 2 !== 0) {
-          results_.push(tds[x].innerText);
-        }
-      }
-      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
-      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
-      console.log(url3D.src);
-      console.log(url2D.src);
-    });
+  var elements = [];
+  for (var i = 1; i <= 15; i++) {
+    var element = document.getElementById("model-" + i);
+    if (element) {
+      var links = element.querySelectorAll("a");
+      elements.push({ element: element, links: links });
+    }
   }
 
-  if (option3) {
-    option3.addEventListener("click", (event) => {
-      let results_ = [];
-
-      for (let x = 0; x < tds.length; x++) {
-        if (x % 2 !== 0) {
-          results_.push(tds[x].innerText);
-        }
-      }
-
-      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
-      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
-    });
+  if (results_[1] == "Manuel") {
+    elements[0].links[0].classList.remove("bg-slate-400");
+    elements[0].links[0].classList.add("bg-green-400");
+    elements[0].links[0].classList.add("cizgi");
+  } else if (results_[1] == "Yarı-Otonom") {
+    elements[0].links[1].classList.remove("bg-slate-400");
+    elements[0].links[1].classList.add("bg-green-400");
+    elements[0].links[1].classList.add("cizgi");
+  } else {
+    elements[0].links[2].classList.remove("bg-slate-400");
+    elements[0].links[2].classList.add("bg-green-400");
+    elements[0].links[2].classList.add("cizgi");
   }
 
-  if (option4) {
-    option4.addEventListener("click", (event) => {
-      let results_ = [];
-
-      for (let x = 0; x < tds.length; x++) {
-        if (x % 2 !== 0) {
-          results_.push(tds[x].innerText);
-        }
-      }
-      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
-      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
-    });
+  if (results_[2] == "RF Kumanda") {
+    elements[1].links[0].classList.remove("bg-slate-400");
+    elements[1].links[0].classList.add("bg-green-400");
+    elements[1].links[0].classList.add("cizgi");
+  } else if (results_[2] == "Uzaktan Kumanda Modulu") {
+    elements[1].links[1].classList.remove("bg-slate-400");
+    elements[1].links[1].classList.add("bg-green-400");
+    elements[1].links[1].classList.add("cizgi");
+  } else {
+    elements[1].links[2].classList.remove("bg-slate-400");
+    elements[1].links[2].classList.add("bg-green-400");
+    elements[1].links[2].classList.add("cizgi");
   }
 
-  if (option5) {
-    option5.addEventListener("click", (event) => {
-      let results_ = [];
-
-      for (let x = 0; x < tds.length; x++) {
-        if (x % 2 !== 0) {
-          results_.push(tds[x].innerText);
-        }
-      }
-      url2D.src = `static\\imgs\\2D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.JPG`;
-      url3D.src = `static\\imgs\\3D\\${results_[0][0]}${results_[14][0]}${results_[3][0]}.glb`;
-    });
+  if (results_[2] == "RF Kumanda") {
+    elements[1].links[0].classList.remove("bg-slate-400");
+    elements[1].links[0].classList.add("bg-green-400");
+    elements[1].links[0].classList.add("cizgi");
+  } else if (results_[2] == "Uzaktan Kumanda Modulu") {
+    elements[1].links[1].classList.remove("bg-slate-400");
+    elements[1].links[1].classList.add("bg-green-400");
+    elements[1].links[1].classList.add("cizgi");
+  } else {
+    elements[1].links[2].classList.remove("bg-slate-400");
+    elements[1].links[2].classList.add("bg-green-400");
+    elements[1].links[2].classList.add("cizgi");
   }
 
-  const btnSavika = document.querySelector(".btn-savika");
-
-  if (btnSavika) {
-    btnSavika.addEventListener("click", (event) => {
-      let progressBar = document.getElementById("progress-bar");
-      let width = 0;
-      let interval = 1000; // Interval time in milliseconds
-      let increment = (100 - width) / (5000 / interval); // Increment amount
-
-      function increaseProgress() {
-        if (width >= 100) {
-          clearInterval(progressInterval);
-        } else {
-          width += increment;
-          progressBar.style.width = width + "%";
-          progressBar.setAttribute("aria-valuenow", width);
-        }
-      }
-
-      let progressInterval = setInterval(increaseProgress, interval);
-    });
+  //Faydalı Yük
+  console.log(results_[3].split("\n")[0]);
+  if (results_[3].split("\n")[0] == "Gözetleme Sistemi") {
+    elements[2].links[0].classList.remove("bg-slate-400");
+    elements[2].links[0].classList.add("bg-green-400");
+    elements[2].links[0].classList.add("cizgi");
+  } else if (results_[3].split("\n")[0] == "Bomba İmha Sistemi") {
+    elements[2].links[1].classList.remove("bg-slate-400");
+    elements[2].links[1].classList.add("bg-green-400");
+    elements[2].links[1].classList.add("cizgi");
+  } else if (results_[3].split("\n")[0] == "Taşıyıcı Sistemi") {
+    elements[2].links[2].classList.remove("bg-slate-400");
+    elements[2].links[2].classList.add("bg-green-400");
+    elements[2].links[2].classList.add("cizgi");
+  } else if (results_[3].split("\n")[0] == "Silah Sistemi") {
+    elements[2].links[3].classList.remove("bg-slate-400");
+    elements[2].links[3].classList.add("bg-green-400");
+    elements[2].links[3].classList.add("cizgi");
+  } else if (results_[3].split("\n")[0] == "Mayın ve Engel Temizleme Sistemi") {
+    elements[2].links[4].classList.remove("bg-slate-400");
+    elements[2].links[4].classList.add("bg-green-400");
+    elements[2].links[4].classList.add("cizgi");
   }
+
+  ///////
+
+  if (results_[4] == "0-20 kw - Elektrikli") {
+    elements[3].links[0].classList.remove("bg-slate-400");
+    elements[3].links[0].classList.add("bg-green-400");
+    elements[3].links[0].classList.add("cizgi");
+  } else if (results_[4] == "20-75 kw - Elektrikli") {
+    elements[3].links[1].classList.remove("bg-slate-400");
+    elements[3].links[1].classList.add("bg-green-400");
+    elements[3].links[1].classList.add("cizgi");
+  } else if (results_[4] == "75-300 kw - Elektrikli") {
+    elements[3].links[2].classList.remove("bg-slate-400");
+    elements[3].links[2].classList.add("bg-green-400");
+    elements[3].links[2].classList.add("cizgi");
+  } else if (results_[4] == "300+ kw - Elektrikli") {
+    elements[3].links[3].classList.remove("bg-slate-400");
+    elements[3].links[3].classList.add("bg-green-400");
+    elements[3].links[3].classList.add("cizgi");
+  } else if (results_[4] == "25-100 hp - Dizel") {
+    elements[3].links[4].classList.remove("bg-slate-400");
+    elements[3].links[4].classList.add("bg-green-400");
+    elements[3].links[4].classList.add("cizgi");
+  } else if (results_[4] == "100-400 hp - Dizel") {
+    elements[3].links[5].classList.remove("bg-slate-400");
+    elements[3].links[5].classList.add("bg-green-400");
+    elements[3].links[5].classList.add("cizgi");
+  } else if (results_[4] == "400+ hp - Dizel") {
+    elements[3].links[6].classList.remove("bg-slate-400");
+    elements[3].links[6].classList.add("bg-green-400");
+    elements[3].links[6].classList.add("cizgi");
+  } else if (results_[4] == "25-100 hp + 0-20 kw - Hibrit") {
+    elements[3].links[7].classList.remove("bg-slate-400");
+    elements[3].links[7].classList.add("bg-green-400");
+    elements[3].links[7].classList.add("cizgi");
+  } else if (results_[4] == "100-400 hp + 20-75 kw - Hibrit") {
+    elements[3].links[8].classList.remove("bg-slate-400");
+    elements[3].links[8].classList.add("bg-green-400");
+    elements[3].links[8].classList.add("cizgi");
+  } else if (results_[4] == "400+ hp + 75+ kw Hibrit") {
+    elements[3].links[9].classList.remove("bg-slate-400");
+    elements[3].links[9].classList.add("bg-green-400");
+    elements[3].links[9].classList.add("cizgi");
+  }
+
+  if (results_[5] == "Ackerman Yönlendirme Sistemi") {
+    elements[4].links[0].classList.remove("bg-slate-400");
+    elements[4].links[0].classList.add("bg-green-400");
+    elements[4].links[0].classList.add("cizgi");
+  } else if (results_[5] == "Diferansiyel Yönlendirme Sistemi") {
+    elements[4].links[1].classList.remove("bg-slate-400");
+    elements[4].links[1].classList.add("bg-green-400");
+    elements[4].links[1].classList.add("cizgi");
+  } else if (results_[5] == "4WS Yönlendirme Sistemi") {
+    elements[4].links[2].classList.remove("bg-slate-400");
+    elements[4].links[2].classList.add("bg-green-400");
+    elements[4].links[2].classList.add("cizgi");
+  } else if (results_[5] == "Skid-Steer Yönlendirme Sistemi") {
+    elements[4].links[3].classList.remove("bg-slate-400");
+    elements[4].links[3].classList.add("bg-green-400");
+    elements[4].links[3].classList.add("cizgi");
+  } else if (results_[5] == "Aktif Dönüşlü Yönlendirme Sistemi") {
+    elements[4].links[4].classList.remove("bg-slate-400");
+    elements[4].links[4].classList.add("bg-green-400");
+    elements[4].links[4].classList.add("cizgi");
+  }
+
+  if (results_[6] == "Kauçuk-Elastomerik") {
+    elements[5].links[0].classList.remove("bg-slate-400");
+    elements[5].links[0].classList.add("bg-green-400");
+    elements[5].links[0].classList.add("cizgi");
+  } else if (results_[6] == "Yay ve Amortisör Sistemi") {
+    elements[5].links[1].classList.remove("bg-slate-400");
+    elements[5].links[1].classList.add("bg-green-400");
+    elements[5].links[1].classList.add("cizgi");
+  } else if (results_[6] == "MacPherson") {
+    elements[5].links[2].classList.remove("bg-slate-400");
+    elements[5].links[2].classList.add("bg-green-400");
+    elements[5].links[2].classList.add("cizgi");
+  } else if (results_[6] == "Çift Salıncaklı") {
+    elements[5].links[3].classList.remove("bg-slate-400");
+    elements[5].links[3].classList.add("bg-green-400");
+    elements[5].links[3].classList.add("cizgi");
+  } else if (results_[6] == "Burulabilen Mil") {
+    elements[5].links[4].classList.remove("bg-slate-400");
+    elements[5].links[4].classList.add("bg-green-400");
+    elements[5].links[4].classList.add("cizgi");
+  } else if (results_[6] == "Katı Aks") {
+    elements[5].links[5].classList.remove("bg-slate-400");
+    elements[5].links[5].classList.add("bg-green-400");
+    elements[5].links[5].classList.add("cizgi");
+  } else if (results_[6] == "Hidropnömatik") {
+    elements[5].links[6].classList.remove("bg-slate-400");
+    elements[5].links[6].classList.add("bg-green-400");
+    elements[5].links[6].classList.add("cizgi");
+  }
+
+  if (results_[7] == "Polimer Malzemeler") {
+    elements[6].links[0].classList.remove("bg-slate-400");
+    elements[6].links[0].classList.add("bg-green-400");
+    elements[6].links[0].classList.add("cizgi");
+  } else if (results_[7] == "Kompozit Malzemeler") {
+    elements[6].links[1].classList.remove("bg-slate-400");
+    elements[6].links[1].classList.add("bg-green-400");
+    elements[6].links[1].classList.add("cizgi");
+  } else if (results_[7] == "Alüminyum Alaşımlar") {
+    elements[6].links[2].classList.remove("bg-slate-400");
+    elements[6].links[2].classList.add("bg-green-400");
+    elements[6].links[2].classList.add("cizgi");
+  } else if (results_[7] == "Çelik Alaşımlar") {
+    elements[6].links[3].classList.remove("bg-slate-400");
+    elements[6].links[3].classList.add("bg-green-400");
+    elements[6].links[3].classList.add("cizgi");
+  }
+
+  if (results_[8] == "Pil") {
+    elements[7].links[0].classList.remove("bg-slate-400");
+    elements[7].links[0].classList.add("bg-green-400");
+    elements[7].links[0].classList.add("cizgi");
+  } else if (results_[8] == "Batarya") {
+    elements[7].links[1].classList.remove("bg-slate-400");
+    elements[7].links[1].classList.add("bg-green-400");
+    elements[7].links[1].classList.add("cizgi");
+  } else if (results_[8] == "Yakıt Hücresi") {
+    elements[7].links[2].classList.remove("bg-slate-400");
+    elements[7].links[2].classList.add("bg-green-400");
+    elements[7].links[2].classList.add("cizgi");
+  } else if (results_[8] == "Yakıt Tankı") {
+    elements[7].links[3].classList.remove("bg-slate-400");
+    elements[7].links[3].classList.add("bg-green-400");
+    elements[7].links[3].classList.add("cizgi");
+  }
+
+  if (results_[9] == "Sabit Oranlı Transmisyon") {
+    elements[8].links[0].classList.remove("bg-slate-400");
+    elements[8].links[0].classList.add("bg-green-400");
+    elements[8].links[0].classList.add("cizgi");
+  } else if (results_[9] == "Elektrikli Transmisyon") {
+    elements[8].links[1].classList.remove("bg-slate-400");
+    elements[8].links[1].classList.add("bg-green-400");
+    elements[8].links[1].classList.add("cizgi");
+  } else if (results_[9] == "Değişken Oranlı Transmisyon") {
+    elements[8].links[2].classList.remove("bg-slate-400");
+    elements[8].links[2].classList.add("bg-green-400");
+    elements[8].links[2].classList.add("cizgi");
+  }
+
+  if (results_[10] == "Dinamik Frenleme") {
+    elements[9].links[0].classList.remove("bg-slate-400");
+    elements[9].links[0].classList.add("bg-green-400");
+    elements[9].links[0].classList.add("cizgi");
+  } else if (results_[10] == "EBS (Elektronik Fren Sistemi)") {
+    elements[9].links[1].classList.remove("bg-slate-400");
+    elements[9].links[1].classList.add("bg-green-400");
+    elements[9].links[1].classList.add("cizgi");
+  } else if (results_[10] == "ABS (Anti-Blokaj Fren Sistemi)") {
+    elements[9].links[2].classList.remove("bg-slate-400");
+    elements[9].links[2].classList.add("bg-green-400");
+    elements[9].links[2].classList.add("cizgi");
+  } else if (results_[10] == "Rejenaratif Frenleme") {
+    elements[9].links[3].classList.remove("bg-slate-400");
+    elements[9].links[3].classList.add("bg-green-400");
+    elements[9].links[3].classList.add("cizgi");
+  }
+
+  if (results_[11] == "Hava Soğutmalı") {
+    elements[10].links[0].classList.remove("bg-slate-400");
+    elements[10].links[0].classList.add("bg-green-400");
+    elements[10].links[0].classList.add("cizgi");
+  } else if (results_[11] == "Yağ Soğutmalı") {
+    elements[10].links[1].classList.remove("bg-slate-400");
+    elements[10].links[1].classList.add("bg-green-400");
+    elements[10].links[1].classList.add("cizgi");
+  } else if (results_[11] == "Su Soğutmalı") {
+    elements[10].links[2].classList.remove("bg-slate-400");
+    elements[10].links[2].classList.add("bg-green-400");
+    elements[10].links[2].classList.add("cizgi");
+  }
+
+  if (results_[12] == "Aküsüz Sistem") {
+    elements[11].links[0].classList.remove("bg-slate-400");
+    elements[11].links[0].classList.add("bg-green-400");
+    elements[11].links[0].classList.add("cizgi");
+  } else if (results_[12] == "12V-Akü") {
+    elements[11].links[1].classList.remove("bg-slate-400");
+    elements[11].links[1].classList.add("bg-green-400");
+    elements[11].links[1].classList.add("cizgi");
+  } else if (results_[12] == "24V-Akü") {
+    elements[11].links[2].classList.remove("bg-slate-400");
+    elements[11].links[2].classList.add("bg-green-400");
+    elements[11].links[2].classList.add("cizgi");
+  } else if (results_[12] == "28V-Akü") {
+    elements[11].links[3].classList.remove("bg-slate-400");
+    elements[11].links[3].classList.add("bg-green-400");
+    elements[11].links[3].classList.add("cizgi");
+  }
+
+  if (
+    results_[13] ==
+    "Sensörler | Kameralar | İşlemciler | Güç Dağıtım Üniteleri | Kablolar"
+  ) {
+    elements[12].links[0].classList.remove("bg-slate-400");
+    elements[12].links[0].classList.add("bg-green-400");
+    elements[12].links[0].classList.add("cizgi");
+  }
+
+  if (results_[14] == "2 Tekerlekli") {
+    elements[13].links[0].classList.remove("bg-slate-400");
+    elements[13].links[0].classList.add("bg-green-400");
+    elements[13].links[0].classList.add("cizgi");
+  } else if (results_[14] == "4 Tekerlekli") {
+    elements[13].links[1].classList.remove("bg-slate-400");
+    elements[13].links[1].classList.add("bg-green-400");
+    elements[13].links[1].classList.add("cizgi");
+  } else if (results_[14] == "6 Tekerlekli") {
+    elements[13].links[2].classList.remove("bg-slate-400");
+    elements[13].links[2].classList.add("bg-green-400");
+    elements[13].links[2].classList.add("cizgi");
+  } else if (results_[14] == "8 Tekerlekli") {
+    elements[13].links[3].classList.remove("bg-slate-400");
+    elements[13].links[3].classList.add("bg-green-400");
+    elements[13].links[3].classList.add("cizgi");
+  } else if (results_[14] == "Paletli") {
+    elements[13].links[4].classList.remove("bg-slate-400");
+    elements[13].links[4].classList.add("bg-green-400");
+    elements[13].links[4].classList.add("cizgi");
+  }
+
+  if (results_[15] == "2 Tekerlekli Şasi") {
+    elements[14].links[0].classList.remove("bg-slate-400");
+    elements[14].links[0].classList.add("bg-green-400");
+    elements[14].links[0].classList.add("cizgi");
+  } else if (results_[15] == "4 Tekerlekli Şasi") {
+    elements[14].links[1].classList.remove("bg-slate-400");
+    elements[14].links[1].classList.add("bg-green-400");
+    elements[14].links[1].classList.add("cizgi");
+  } else if (results_[15] == "6 Tekerlekli Şasi") {
+    elements[14].links[2].classList.remove("bg-slate-400");
+    elements[14].links[2].classList.add("bg-green-400");
+    elements[14].links[2].classList.add("cizgi");
+  } else if (results_[15] == "8 Tekerlekli Şasi") {
+    elements[14].links[3].classList.remove("bg-slate-400");
+    elements[14].links[3].classList.add("bg-green-400");
+    elements[14].links[3].classList.add("cizgi");
+  } else if (results_[15] == "Paletli Şasi") {
+    elements[14].links[4].classList.remove("bg-slate-400");
+    elements[14].links[4].classList.add("bg-green-400");
+    elements[14].links[4].classList.add("cizgi");
+  }
+
+  document.getElementById("btnTest").addEventListener("click", () => {
+    const modal = document.getElementById("modal-img");
+
+    html2canvas(modal).then((canvas) => {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "model-ika.png";
+      link.click();
+    });
+  });
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<script>
+  function drawLine(parentElement, x1, y1, x2, y2) {
+    const line = document.createElement("div");
+    line.className = "line absolute bg-gray-700 dark:bg-white";
+    line.style.height = "3px";
+    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    line.style.width = `${length}px`;
+    line.style.top = `${y1}px`;
+    line.style.left = `${x1}px`;
+    const angle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+    line.style.transformOrigin = "0 0"; // Rotate from the starting point
+    line.style.transform = `rotate(${angle}deg)`;
+    parentElement.appendChild(line);
+  }
+
+  function drawVerticalLine(parentElement, x, y1, y2) {
+    const line = document.createElement("div");
+    line.className = "line vertical-line absolute bg-gray-700 dark:bg-white";
+    line.style.width = "3px";
+    line.style.height = `${Math.abs(y2 - y1)}px`;
+    line.style.top = `${Math.min(y1, y2)}px`;
+    line.style.left = `${x}px`;
+    parentElement.appendChild(line);
+  }
+
+  function connectButtons(parentElement) {
+    const buttons = parentElement.querySelectorAll(".cizgi");
+    const buttonArray = Array.from(buttons);
+
+    for (let i = 0; i < buttonArray.length - 1; i++) {
+      const rect1 = buttonArray[i].getBoundingClientRect();
+      const rect2 = buttonArray[i + 1].getBoundingClientRect();
+      const x1 =
+        rect1.left +
+        rect1.width / 2 -
+        parentElement.getBoundingClientRect().left;
+      const y1 = rect1.bottom - parentElement.getBoundingClientRect().top;
+      const x2 =
+        rect2.left +
+        rect2.width / 2 -
+        parentElement.getBoundingClientRect().left;
+      const y2 = rect2.top - parentElement.getBoundingClientRect().top;
+      const midY = y1 + (y2 - y1) / 2;
+
+      drawVerticalLine(parentElement, x1, y1, midY);
+      drawLine(parentElement, x1, midY, x2, midY);
+      drawVerticalLine(parentElement, x2, midY, y2);
+    }
+  }
+
+  // Open Modal Function
+  document.getElementById("btnModel").addEventListener("click", function () {
+    const modal = document.getElementById("modal-model");
+    modal.style.display = "block";
+    const modalContent = modal.querySelector(".modal-content");
+    connectButtons(modalContent);
+  });
+
+  // Close Modal Function
+  document
+    .getElementById("btnModelKapat")
+    .addEventListener("click", function () {
+      const modal = document.getElementById("modal-model");
+      modal.style.display = "none";
+      // Remove existing lines when closing modal
+      const existingLines = modal.querySelectorAll(".line");
+      existingLines.forEach((line) => line.parentNode.removeChild(line));
+    });
+
+  // Close Modal When Clicked Outside
+  window.onclick = function (event) {
+    const modal = document.getElementById("modal-model");
+    if (event.target == modal) {
+      modal.style.display = "none";
+      // Remove existing lines when clicking outside modal
+      const existingLines = modal.querySelectorAll(".line");
+      existingLines.forEach((line) => line.parentNode.removeChild(line));
+    }
+  };
+</script>
+
 {% endblock %}

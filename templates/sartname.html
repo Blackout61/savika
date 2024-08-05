@@ -1,180 +1,317 @@
 {% extends "base.html" %} {% block content %}
-
-<div class="container" id="sartname_">
-  <div class="row">
-    <h1 class="header-sart">ŞARTNAME</h1>
-    <div id="sartname" class="col col-md-12 ortala">
-      <form class="multi-step-form" method="POST" data-multi-step>
-        <div class="sartname">
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>İnsansız kara aracının maliyeti ne kadar olsun?</h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/1.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }} {{ form.radio_btn(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>
-                İnsansız kara aracının boyutsal sınıflandırması hangi aralıkta
-                bulunsun?
-              </h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/4.jpeg')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_2(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>
-                İnsansız kara aracının özerklik durumu hangi seviyede olsun?
-              </h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/2.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_3(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>İnsansız kara aracının kapsama alanı ne kadar olsun?</h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/3.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_4(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>İnsansız kara aracının hangi görevde kullanılsın?</h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/5.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_5(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>İnsansız kara aracında kullanılacak motor tipi ne olsun?</h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/6.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_6(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>
-                İnsansız kara aracının kullanılacağı arazi tipi hangisidir?
-              </h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/7.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_7(class_="")}}
-              </div>
-              <button name="button" data-next class="btn btn-success">
-                İlerle
-              </button>
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
-          <div class="cardForm" data-step>
-            <div class="form-group">
-              <h2>İnsansız kara aracının manevra kabiliyeti nasıl olsun?</h2>
-              <img
-                class="sartname-img"
-                src="{{url_for('static', filename='imgs/8.png')}}"
-                class="img-fluid rounded-top"
-                alt="No IMG"
-              />
-
-              <div class="radio-area">
-                {{ form.hidden_tag() }}{{ form.radio_btn_8(class_="")}}
-              </div>
-
-              {{ form.submit(class_="btn btn-success px-5 py-2") }}
-
-              <button name="button" data-previous class="btn btn-warning">
-                Geri
-              </button>
-            </div>
-          </div>
+<div class="flex justify-center w-full">
+  <form class="text-center w-full lg:w-[50%]" method="POST" data-multi-step>
+    <div
+      class="hidden text-center border-2 rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div class="flex flex-col gap-2 p-4 ml-auto mr-auto text-justify">
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/1.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          1. İnsansız kara aracının maliyeti ne kadar olsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }} {{ form.radio_btn(class_="grid w-full
+          gap-2")}}
         </div>
-      </form>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/2.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          2. İnsansız kara aracının boyutsal sınıflandırması hangi aralıkta
+          bulunsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_2(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/3.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          3. İnsansız kara aracının özerklik durumu hangi seviyede olsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_3(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/4.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          4. İnsansız kara aracının kapsama alanı ne kadar olsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_4(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/5.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          5. İnsansız kara aracı hangi görevde kullanılsın?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_5(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/6.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          6. İnsansız kara aracında kullanılacak motor tipi ne olsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_6(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/7.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          7. İnsansız kara aracının kullanılacağı arazi tipi hangisidir?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_7(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            data-next
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            İleri
+            <i class="fa-solid fa-arrow-right ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden text-center border-2 rounded-xl p2 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+      soru
+    >
+      <div
+        class="flex flex-col gap-1 overflow-hidden mb-2 p-4 ml-auto mr-auto text-justify"
+      >
+        <img
+          class="block text-center w-full mx-auto rounded-lg"
+          src="{{url_for('static', filename='imgs/8.png')}}"
+          class="img-fluid rounded-top"
+          alt="No IMG"
+        />
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+          8. İnsansız kara aracının manevra kabiliyeti nasıl olsun?
+        </h2>
+        <div id="yanit" class="text-gray-900 dark:text-white">
+          {{ form.hidden_tag() }}{{ form.radio_btn_8(class_="grid w-full
+          gap-2")}}
+        </div>
+        <div class="mt-2">
+          <button
+            name="button"
+            data-previous
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-900"
+          >
+            <i class="fa-solid fa-arrow-left mr-2 font-bold"></i>
+            Geri
+          </button>
+          <button
+            name="button"
+            class="w-30 inline-flex items-center justify-between px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900"
+          >
+            {{form.submit}}
+            <i class="fa-solid fa-check ml-2 font-bold"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 {% endblock %}

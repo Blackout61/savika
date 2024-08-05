@@ -3,251 +3,388 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway"
-      rel="stylesheet"
-    />
+    <title>SAVİKA</title>
     <link
       rel="stylesheet"
       href="{{url_for('static',filename='styles/style.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='styles/output.css')}}"
     />
     <script
       src="https://kit.fontawesome.com/28f6175930.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <header>
       <nav
-        class="navbar navbar-expand-lg bg-body-tertiary"
-        data-bs-theme="dark"
+        class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
       >
-        <div class="container-fluid">
-          <a class="navbar-brand me-5" href="#">
-            <img
-              class="logo-main"
-              src="{{url_for('static', filename='imgs/logo_last.png')}}"
-              class="img-fluid rounded-top"
-              alt="No IMG"
-            />
-            SAVİKA
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-1 mb-lg-0">
-              <li class="nav-item">
-                <a id="link1" class="nav-link" href="{{url_for('index')}}"
-                  >Ana Sayfa</a
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center justify-start rtl:justify-end">
+              <button
+                data-drawer-target="logo-sidebar"
+                data-drawer-toggle="logo-sidebar"
+                aria-controls="logo-sidebar"
+                type="button"
+                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              >
+                <span class="sr-only">Open sidebar</span>
+                <svg
+                  class="w-6 h-6"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Fonksiyon Yapıları
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">Tüm Fonksiyon Yapısı</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Alt Fonksiyon Yapısı</a>
-                  </li>
-
-                  <div class="dropend">
-                    <li class="sub-menu">
-                      <a
-                        href="#"
-                        class="dropdown-item dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        data-toggle="dropdown"
-                        >Düzenle</a
-                      >
-                      <ul class="dropdown-menu savika-menu">
-                        <li>
-                          <a href="" class="dropdown-item"
-                            >Tüm Fonksiyon Yapısı Yükle</a
-                          >
-                        </li>
-                        <li>
-                          <a href="" class="dropdown-item"
-                            >Alt Fonksiyon Yapısı Yükle</a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                  </div>
-                </ul>
-              </li>
-
-              <li class="nav-item">
-                <a id="link2" class="nav-link" href="{{url_for('sartname')}}"
-                  >Şartname</a
-                >
-              </li>
-
-              <li class="nav-item">
-                <a id="link2" class="nav-link" href="{{url_for('veriTabani')}}"
-                  >Veri Tabanı</a
-                >
-              </li>
-
-              <li class="nav-item">
-                <a id="link2" class="nav-link" href="">Yapay Zekâ</a>
-              </li>
-
-              <li class="nav-item">
-                <a id="link2" class="nav-link" href="">Tasarım</a>
-              </li>
-
-              <li class="nav-item">
-                <a id="link4" class="nav-link" href="">Yardım</a>
-              </li>
-              <li class="nav-item">
-                <a id="link3" class="nav-link" href="">Hakkımızda</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item ms-auto icons">
+                  <path
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                  ></path>
+                </svg>
+              </button>
+              <a href="{{url_for('index')}}" class="flex ms-2">
                 <img
-                  class="logo-flag"
-                  src="{{url_for('static', filename='imgs/tr_logo.png')}}"
-                  class="img-fluid rounded-top"
-                  alt="No IMG"
+                  src="{{url_for('static', filename='imgs/logo_last.png')}}"
+                  class="me-3 w-10 h-10 dark:brightness-0 dark:invert-[1]"
+                  alt="Savika Logo"
                 />
-              </li>
-            </ul>
+                <span
+                  class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+                  >SAVİKA</span
+                >
+              </a>
+            </div>
+
+            <div class="flex items-center">
+              <!-- Dark Mode Button-->
+              <button
+                id="theme-toggle"
+                type="button"
+                class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full text-sm p-2.5"
+              >
+                <svg
+                  id="theme-toggle-dark-icon"
+                  class="hidden w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  ></path>
+                </svg>
+                <svg
+                  id="theme-toggle-light-icon"
+                  class="hidden w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <!-- User Button-->
+              <div class="flex items-center ms-3">
+                <div>
+                  <button
+                    type="button"
+                    class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                    aria-expanded="false"
+                    data-dropdown-toggle="dropdown-user"
+                  >
+                    <span class="sr-only">Open user menu</span>
+                    <img
+                      class="w-8 h-8 rounded-full"
+                      src="{{url_for('static', filename='imgs/cuneyd.jpg')}}"
+                      alt="user photo"
+                    />
+                  </button>
+                </div>
+                <div
+                  class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                  id="dropdown-user"
+                >
+                  <div class="px-4 py-3" role="none">
+                    <p
+                      class="text-sm text-gray-900 dark:text-white"
+                      role="none"
+                    >
+                      Cüneyd Demir
+                    </p>
+                    <p
+                      class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                      role="none"
+                    >
+                      cuneyd.demir@ahievran.edu.tr
+                    </p>
+                  </div>
+                  <ul class="py-1" role="none">
+                    <li>
+                      <a
+                        href="{{url_for('index')}}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        role="menuitem"
+                        >Anasayfa</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="{{url_for('sartname')}}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        role="menuitem"
+                        >Savika</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="{{url_for('iletisim')}}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        role="menuitem"
+                        >İletişim</a
+                      >
+                    </li>
+
+                    <li>
+                      <div
+                        class="flex mt-4 space-x-6 sm:justify-center sm:mt-0"
+                      >
+                        <a
+                          href="https://www.facebook.com/cuneyd.demir.61/"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a
+                          href="https://www.instagram.com/cuneyddemir"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a
+                          href="https://www.linkedin.com/in/c%C3%BCneyd-demir-40/"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a
+                          href="https://unis.ahievran.edu.tr/akademisyen/cuneyd.demir"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                        >
+                          <i class="fa-solid fa-globe"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
+
+      <aside
+        id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar"
+      >
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+          <ul class="space-y-2 font-medium">
+            <li>
+              <a
+                href="{{url_for('index')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-solid fa-house flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="ms-3">Anasayfa</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{url_for('hakkinda')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-solid fa-bookmark flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="flex-1 ms-3 whitespace-nowrap">Hakkında</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{url_for('sartname')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-brands fa-instalod flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="flex-1 ms-3 whitespace-nowrap">SAVİKA</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{url_for('tanitim')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-solid fa-book flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="flex-1 ms-3 whitespace-nowrap">Tanıtım</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="{{url_for('yardim')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-solid fa-circle-info flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="flex-1 ms-3 whitespace-nowrap">Yardım</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="{{url_for('iletisim')}}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <i
+                  class="fa-solid fa-address-book flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                ></i>
+                <span class="flex-1 ms-3 whitespace-nowrap">İletişim</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
     </header>
 
-    <main>
-      <div class="container">
-        <div class="progress-bar" id="progressBar">
-          <div class="progress-state"></div>
-        </div>
-        <span class="progress-label"></span>
-      </div>
-
+    <main
+      class="flex-grow sm:flex sm:items-center sm:justify-center pt-[5rem] px-4 sm:ml-64 bg-white dark:bg-gray-700"
+    >
       <!-- Sayfa İçeriği -->
       {% block content %} {% endblock %}
     </main>
 
-    <footer class="text-center text-white" style="background-color: #ccc">
-      <!-- Grid container -->
-      <div class="container pt-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-          <!-- Facebook -->
+    <footer class="p-4 sm:ml-64 bg-white dark:bg-gray-700">
+      <hr class="mb-2 border-gray-200 sm:mx-auto dark:border-gray-800" />
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <div class="mb-6 md:mb-0">
+          <a href="{{url_for('index')}}" class="flex items-center">
+            <img
+              src="{{url_for('static', filename='imgs/logo_last.png')}}"
+              class="me-3 w-10 h-10 dark:brightness-0 dark:invert-[1]"
+              alt="Savika Logo"
+            />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >SAVİKA</span
+            >
+          </a>
+        </div>
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+          >© 2024
+          <a href="https://flowbite.com" class="hover:underline"
+            >Cüneyd Demir™</a
+          >. Tüm Hakları Saklıdır.
+        </span>
+        <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
           <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="light"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
+            href="https://www.facebook.com/cuneyd.demir.61/"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+          >
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/cuneyddemir"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
 
-          <!-- Twitter -->
           <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="dark"
-            ><i class="fab fa-twitter"></i
-          ></a>
-
-          <!-- Google -->
+            href="https://www.linkedin.com/in/c%C3%BCneyd-demir-40/"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
           <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="dark"
-            ><i class="fab fa-google"></i
-          ></a>
-
-          <!-- Instagram -->
-          <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="dark"
-            ><i class="fab fa-instagram"></i
-          ></a>
-
-          <!-- Linkedin -->
-          <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="dark"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <!-- Github -->
-          <a
-            class="btn btn-link btn-floating btn-lg text-dark m-1"
-            href="#!"
-            role="button"
-            data-mdb-ripple-color="dark"
-            ><i class="fab fa-github"></i
-          ></a>
-        </section>
-        <!-- Section: Social media -->
+            href="https://unis.ahievran.edu.tr/akademisyen/cuneyd.demir"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+          >
+            <i class="fa-solid fa-globe"></i>
+          </a>
+        </div>
       </div>
-      <!-- Grid container -->
-
-      <!-- Copyright -->
-      <div
-        class="text-center text-dark p-3"
-        style="background-color: rgba(0, 0, 0, 0.2)"
-      >
-        © 2024 Copyright:
-        <a class="text-dark" href="https://github.com/blackout61/"
-          >Cüneyd Demir</a
-        >
-      </div>
-      <!-- Copyright -->
     </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-
     <script
       type="module"
       src="{{url_for('static',filename='styles/script.js')}}"
     ></script>
     <script
       type="module"
+      src="{{url_for('static',filename='styles/dark.js')}}"
+    ></script>
+    <script
+      type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script> -->
   </body>
 </html>

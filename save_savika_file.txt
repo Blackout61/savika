@@ -1,16 +1,16 @@
-100000$ + 
-Orta Sınıf 
-Otonom 
-Uydu 
-Silah Sistemi 
-100-400 hp + 20-75 kw - Hibrit 
-Engebeli-Yumuşak Zemin 
-Diferansiyel Yönlendirme Sistemi 
-Burulabilen Mil 
-Çelik Alaşımlar 
+0-30000$ 
+Küçük Sınıf 
+Yarı-Otonom 
+Uzaktan Kumanda Modulu 
+Taşıyıcı Sistemi 
+25-100 hp - Dizel 
+Engebeli-Sert Zemin 
+Ackerman Yönlendirme Sistemi 
+Yay ve Amortisör Sistemi 
+Alüminyum Alaşımlar 
 Yakıt Tankı 
 Değişken Oranlı Transmisyon 
-EBS (Elektronik Fren Sistemi) 
-Su Soğutmalı 
-28V-Akü 
+ABS (Anti-Blokaj Fren Sistemi) 
+Yağ Soğutmalı 
+12V-Akü 
 Sensörler | Kameralar | İşlemciler | Güç Dağıtım Üniteleri | Kablolar
